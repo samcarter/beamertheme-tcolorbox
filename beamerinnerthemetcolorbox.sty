@@ -70,17 +70,24 @@
   \usebeamercolor[bg]{block title}   
   \colorlet{beamer@tcb@topshade}{block title.bg}  
   \colorlet{beamer@tcb@bottomshade}{block body.bg}
+  \ifbeamer@tcb@rounded\else
+    \tcbset{title={\insertblocktitle}}
+  \fi
+  \ifx\insertblocktitle\@empty\else
+    \tcbset{
+      title={\insertblocktitle},
+      overlay={
+        \begin{scope}
+          \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+        \end{scope}
+      }    
+    }
+  \fi
   \begin{tcolorbox}[
-    title={\insertblocktitle},
     colbacktitle=block title.bg,
     colback=block body.bg,
     before title={\usebeamercolor[fg]{block title}\usebeamerfont{block title}},
-    before upper={\usebeamercolor[fg]{block body}\usebeamerfont{block body}},     
-    overlay={
-      \begin{scope}
-        \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
-      \end{scope}
-    }       
+    before upper={\usebeamercolor[fg]{block body}\usebeamerfont{block body}},        
   ]
 } 
 \setbeamertemplate{block end}{\end{tcolorbox}}
@@ -91,17 +98,24 @@
   \usebeamercolor[bg]{block title alerted}   
   \colorlet{beamer@tcb@topshade}{block title alerted.bg}  
   \colorlet{beamer@tcb@bottomshade}{block body alerted.bg}
+  \ifbeamer@tcb@rounded\else
+    \tcbset{title={\insertblocktitle}}
+  \fi  
+  \ifx\insertblocktitle\@empty\else
+    \tcbset{
+      title={\insertblocktitle},
+      overlay={
+        \begin{scope}
+          \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+        \end{scope}
+      }    
+    }
+  \fi  
   \begin{tcolorbox}[
-    title={\insertblocktitle},
     colbacktitle=block title alerted.bg,
     colback=block body alerted.bg,
     before title={\usebeamercolor[fg]{block title alerted}\usebeamerfont{block title alerted}},
     before upper={\usebeamercolor[fg]{block body alerted}\usebeamerfont{block body alerted}},    
-    overlay={
-      \begin{scope}
-        \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
-      \end{scope}
-    }        
   ]
 } 
 \setbeamertemplate{block alerted end}{\end{tcolorbox}}
@@ -112,17 +126,24 @@
   \usebeamercolor[bg]{block title example}   
   \colorlet{beamer@tcb@topshade}{block title example.bg}  
   \colorlet{beamer@tcb@bottomshade}{block body example.bg}
+  \ifbeamer@tcb@rounded\else
+    \tcbset{title={\insertblocktitle}}
+  \fi  
+  \ifx\insertblocktitle\@empty\else
+    \tcbset{
+      title={\insertblocktitle},
+      overlay={
+        \begin{scope}
+          \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+        \end{scope}
+      }    
+    }
+  \fi  
   \begin{tcolorbox}[
-    title={\insertblocktitle},
     colbacktitle=block title example.bg,
     colback=block body example.bg,
     before title={\usebeamercolor[fg]{block title example}\usebeamerfont{block title example}},
     before upper={\usebeamercolor[fg]{block body example}\usebeamerfont{block body example}},      
-    overlay={
-      \begin{scope}
-        \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
-      \end{scope}
-    }      
   ]
 } 
 \setbeamertemplate{block example end}{\end{tcolorbox}}
