@@ -1,3 +1,19 @@
+% !TeX root = test.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% The tcolorbox inner theme
+% A beamer inner theme which reproduces standard beamer blocks using tcolorboxes
+% Maintained by samcarter
+%
+% Project repository and bug tracker:
+% https://github.com/samcarter/beamertheme-tcolorbox
+%
+% Released under the LaTeX Project Public License v1.3c or later
+% See http://www.latex-project.org/lppl.txt
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ProvidesPackage{beamerinnerthemetcolorbox}[2022/08/25 version v0.1 Beamer blocks with tcolorboxes]
+
 \RequirePackage[skins]{tcolorbox}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -74,14 +90,16 @@
     \tcbset{title={\insertblocktitle}}
   \fi
   \ifx\insertblocktitle\@empty\else
-    \tcbset{
-      title={\insertblocktitle},
-      overlay={
-        \begin{scope}
-          \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
-        \end{scope}
-      }    
-    }
+    \tcbset{title={\insertblocktitle}}
+    \ifbeamer@tcb@rounded
+      \tcbset{
+        overlay={
+          \begin{scope}
+            \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+          \end{scope}
+        }   
+      }
+    \fi
   \fi
   \begin{tcolorbox}[
     colbacktitle=block title.bg,
@@ -102,15 +120,17 @@
     \tcbset{title={\insertblocktitle}}
   \fi  
   \ifx\insertblocktitle\@empty\else
-    \tcbset{
-      title={\insertblocktitle},
-      overlay={
-        \begin{scope}
-          \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
-        \end{scope}
-      }    
-    }
-  \fi  
+    \tcbset{title={\insertblocktitle}}
+    \ifbeamer@tcb@rounded
+      \tcbset{
+        overlay={
+          \begin{scope}
+            \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+          \end{scope}
+        }   
+      }
+    \fi
+  \fi
   \begin{tcolorbox}[
     colbacktitle=block title alerted.bg,
     colback=block body alerted.bg,
@@ -130,15 +150,17 @@
     \tcbset{title={\insertblocktitle}}
   \fi  
   \ifx\insertblocktitle\@empty\else
-    \tcbset{
-      title={\insertblocktitle},
-      overlay={
-        \begin{scope}
-          \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
-        \end{scope}
-      }    
-    }
-  \fi  
+    \tcbset{title={\insertblocktitle}}
+    \ifbeamer@tcb@rounded
+      \tcbset{
+        overlay={
+          \begin{scope}
+            \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+          \end{scope}
+        }   
+      }
+    \fi
+  \fi
   \begin{tcolorbox}[
     colbacktitle=block title example.bg,
     colback=block body example.bg,
