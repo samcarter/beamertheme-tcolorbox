@@ -1,0 +1,120 @@
+\RequirePackage[skins]{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Theme Options 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newif\ifbeamer@tcb@rounded
+\newif\ifbeamer@tcb@shadow
+\def\beamer@tcb@true{true}
+
+\DeclareOptionBeamer{shadow}[true]{\csname beamer@tcb@shadow#1\endcsname}
+\DeclareOptionBeamer{rounded}[true]{\csname beamer@tcb@rounded#1\endcsname}
+
+\ExecuteOptionsBeamer{shadow=false}
+\ExecuteOptionsBeamer{rounded=false}
+
+% check options from other themes
+\ifdefined\beamer@themerounded@shadow
+  \beamer@tcb@roundedtrue
+  \ifx\beamer@themerounded@shadow\beamer@tcb@true
+    \beamer@tcb@shadowtrue
+  \fi
+\fi
+
+\ProcessOptionsBeamer
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% General Settings
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tcbset{
+  oversize=0mm,
+  left=0.05cm,
+  right=0.05cm,
+  enhanced,
+  boxrule=0cm,
+  frame hidden,
+  top=1.5mm,
+  bottom=0.5mm
+}
+
+% optional settings
+\ifbeamer@tcb@rounded
+  \tcbset{
+    arc=1.3mm,
+    top=0.5mm,
+    bottom=0mm,
+    bottomtitle=-0.5mm,
+    overlay={
+      \begin{scope}
+        \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+      \end{scope}
+    }    
+  }
+\else
+  \tcbset{sharpish corners}
+\fi
+
+\ifbeamer@tcb@shadow
+  \tcbset{drop fuzzy shadow=black!90}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Defining blocks
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<presentation>
+
+% normal block
+\setbeamertemplate{block begin}{%
+  \usebeamercolor[bg]{block body} 
+  \usebeamercolor[bg]{block title}   
+  \colorlet{beamer@tcb@topshade}{block title.bg}  
+  \colorlet{beamer@tcb@bottomshade}{block body.bg}
+  \begin{tcolorbox}[
+    title={\insertblocktitle},
+    colbacktitle=block title.bg,
+    colback=block body.bg,
+    before title={\usebeamercolor[fg]{block title}\usebeamerfont{block title}},
+    before upper={\usebeamercolor[fg]{block body}\usebeamerfont{block body}},      
+  ]
+} 
+\setbeamertemplate{block end}{\end{tcolorbox}}
+
+% alert block
+\setbeamertemplate{block alerted begin}{%
+  \usebeamercolor[bg]{block body alerted} 
+  \usebeamercolor[bg]{block title alerted}   
+  \colorlet{beamer@tcb@topshade}{block title alerted.bg}  
+  \colorlet{beamer@tcb@bottomshade}{block body alerted.bg}
+  \begin{tcolorbox}[
+    title={\insertblocktitle},
+    colbacktitle=block title alerted.bg,
+    colback=block body alerted.bg,
+    before title={\usebeamercolor[fg]{block title alerted}\usebeamerfont{block title alerted}},
+    before upper={\usebeamercolor[fg]{block body alerted}\usebeamerfont{block body alerted}},      
+  ]
+} 
+\setbeamertemplate{block alerted end}{\end{tcolorbox}}
+
+% example block
+\setbeamertemplate{block example begin}{%
+  \usebeamercolor[bg]{block body example} 
+  \usebeamercolor[bg]{block title example}   
+  \colorlet{beamer@tcb@topshade}{block title example.bg}  
+  \colorlet{beamer@tcb@bottomshade}{block body example.bg}
+  \begin{tcolorbox}[
+    title={\insertblocktitle},
+    colbacktitle=block title example.bg,
+    colback=block body example.bg,
+    before title={\usebeamercolor[fg]{block title example}\usebeamerfont{block title example}},
+    before upper={\usebeamercolor[fg]{block body example}\usebeamerfont{block body example}},      
+  ]
+} 
+\setbeamertemplate{block example end}{\end{tcolorbox}}
+
+\mode<all>
