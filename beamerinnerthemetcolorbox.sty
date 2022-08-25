@@ -47,12 +47,7 @@
     arc=1.3mm,
     top=0.5mm,
     bottom=0mm,
-    bottomtitle=-0.5mm,
-    overlay={
-      \begin{scope}
-        \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
-      \end{scope}
-    }    
+    bottomtitle=-0.5mm,  
   }
 \else
   \tcbset{sharpish corners}
@@ -80,7 +75,12 @@
     colbacktitle=block title.bg,
     colback=block body.bg,
     before title={\usebeamercolor[fg]{block title}\usebeamerfont{block title}},
-    before upper={\usebeamercolor[fg]{block body}\usebeamerfont{block body}},      
+    before upper={\usebeamercolor[fg]{block body}\usebeamerfont{block body}},     
+    overlay={
+      \begin{scope}
+        \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+      \end{scope}
+    }       
   ]
 } 
 \setbeamertemplate{block end}{\end{tcolorbox}}
@@ -96,7 +96,12 @@
     colbacktitle=block title alerted.bg,
     colback=block body alerted.bg,
     before title={\usebeamercolor[fg]{block title alerted}\usebeamerfont{block title alerted}},
-    before upper={\usebeamercolor[fg]{block body alerted}\usebeamerfont{block body alerted}},      
+    before upper={\usebeamercolor[fg]{block body alerted}\usebeamerfont{block body alerted}},    
+    overlay={
+      \begin{scope}
+        \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+      \end{scope}
+    }        
   ]
 } 
 \setbeamertemplate{block alerted end}{\end{tcolorbox}}
@@ -113,6 +118,11 @@
     colback=block body example.bg,
     before title={\usebeamercolor[fg]{block title example}\usebeamerfont{block title example}},
     before upper={\usebeamercolor[fg]{block body example}\usebeamerfont{block body example}},      
+    overlay={
+      \begin{scope}
+        \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+      \end{scope}
+    }      
   ]
 } 
 \setbeamertemplate{block example end}{\end{tcolorbox}}
