@@ -106,10 +106,10 @@
 
 Over the last decade of answering beamer problems and more recently also being one of the maintainers of the beamer class, I saw countless of requests about beamer blocks. There were users who were looking for sometimes smaller, sometimes larger tweaks to the blocks in their document, for example "How to use the rectangular blocks with sharp corners, but with the shadows from the rounded beamer blocks". Other users encountered various tiny or something bigger problems with the default beamer blocks, like issues with some pdf viewers in which the seams of the underlying colorboxes would become visible. 
 
-For all these cases, there is now an alternative to the default beamer blocks: The tcolorbox inner beamer theme will replace the usual beamer mechanism to draw blocks with tcolorboxes. The tcolorboxes will automatically adopt the look (round/sharp corners and shadows) as well as the colours of the default beamer blocks.
+For all these cases, there is now an alternative to the default beamer blocks: The tcolorbox inner beamer theme will replace the usual beamer mechanism to draw blocks with tcolorboxes. The tcolorboxes will automatically adopt the look and feel (round vs.\ sharp corners and shadows) as well as the colours of the normal beamer blocks.
 
 %The package is included in both \texlive and \miktex and available from \CTAN (\url{https://ctan.org/pkg/beamertheme-tcolorbox}). 
-The development version of this package is located at \url{github.com/samcarter/beamertheme-tcolorbox}. If you have any problems, ideas or other feedback, please make constructive use of its bug tracker.
+The development version of this package is located at \url{github.com/samcarter/beamertheme-tcolorbox}. If you have any problems, ideas or other feedback, please make constructive use of the issue tracker.
 
 Copyright \raisebox{0.2em}{\tiny\fontfamily{cmr}\selectfont\textcopyright} \texttt{samcarter}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the LaTeX project public licence, version 1.3c or later \url{http://www.latex-project.org/lppl.txt}.
 
@@ -121,9 +121,11 @@ The basic usage is fairly simple. One just needs to load the theme via
 \useinnertheme{tcolorbox}
 \end{lstlisting}
 \end{tcolorbox}
-and after that, one can use the normal bemaer `block` environment as usual. Behind the scenes, this will replace the default mechanism of puzzling together the block from two separate tcolorboxes, with a tcolorbox.
+and after that, one can use the normal beamer \lstinline|block| environment as usual. 
 
-In this simple configuration, the look and feel of the new blocks will be taken from the other themes loaded in the presentation. For example if the Madrid theme is loaded, the resulting tcolorbox will have the usual colours, rounded corners and a shadow:
+Behind the scenes, this will replace the default mechanism of puzzling together the block from two separate \lstinline|beamercolorboxes|, with one tcolorbox.
+
+In this simple configuration, the look and feel of the new blocks will be taken from other themes loaded in the presentation. For example if the Madrid theme is loaded, the resulting tcolorbox will have the usual colours, rounded corners and a shadow:
 
 \begin{tcblisting}{
   listing and comment,
@@ -164,7 +166,7 @@ In addition to automatically adopting settings from the other themes, one can al
 \end{lstlisting}
 \end{tcolorbox}
 
-If one for example likes the Antibes theme, but prefers the blocks to have shadows, they can now easily be switched on:
+If one for example likes the Antibes theme, but prefers the blocks to have shadows, they can now easily be added:
 
 \begin{tcblisting}{
   listing and comment,
