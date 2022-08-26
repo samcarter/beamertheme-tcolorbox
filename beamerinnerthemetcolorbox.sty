@@ -15,7 +15,7 @@
 \ProvidesPackage{beamerinnerthemetcolorbox}[2022/08/26 version v0.1 Beamer blocks with tcolorboxes]
 
 \RequirePackage{tcolorbox}
-\tcbuselibrary{skins}
+\tcbuselibrary{skins,hooks}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -84,6 +84,9 @@
     top=0.8mm,
     toptitle=0.2mm,
     bottom=0mm,
+    title code app={
+      \shade[top color=beamer@tcb@titlebg,bottom color=beamer@tcb@bodybg] (title.south west) rectangle ([yshift=-0.5mm]title.south east); 
+    }      
   }
 \else
   \tcbset{sharpish corners}
@@ -111,15 +114,6 @@
   \fi
   \ifx\insertblocktitle\@empty\else
     \tcbset{title={\insertblocktitle}}
-    \ifbeamer@tcb@rounded
-      \tcbset{
-        overlay={
-          \begin{scope}
-            \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
-          \end{scope}
-        }   
-      }
-    \fi
   \fi
   \begin{tcolorbox}[
     colbacktitle=block title.bg,
@@ -141,15 +135,6 @@
   \fi  
   \ifx\insertblocktitle\@empty\else
     \tcbset{title={\insertblocktitle}}
-    \ifbeamer@tcb@rounded
-      \tcbset{
-        overlay={
-          \begin{scope}
-            \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
-          \end{scope}
-        }   
-      }
-    \fi
   \fi
   \begin{tcolorbox}[
     colbacktitle=block title alerted.bg,
@@ -171,15 +156,6 @@
   \fi  
   \ifx\insertblocktitle\@empty\else
     \tcbset{title={\insertblocktitle}}
-    \ifbeamer@tcb@rounded
-      \tcbset{
-        overlay={
-          \begin{scope}
-            \shade[top color=beamer@tcb@topshade,bottom color=beamer@tcb@bottomshade] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
-          \end{scope}
-        }   
-      }
-    \fi
   \fi
   \begin{tcolorbox}[
     colbacktitle=beamer@tcb@titlebg,
