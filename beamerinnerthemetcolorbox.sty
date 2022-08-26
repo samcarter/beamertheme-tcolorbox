@@ -48,14 +48,17 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usebeamercolor[bg]{block body} 
-\colorlet{beamer@tcb@bodybg}{block body.bg}
-\usebeamercolor[fg]{block body} 
-\colorlet{beamer@tcb@bodyfg}{block body.fg}
-\usebeamercolor[bg]{block title} 
-\colorlet{beamer@tcb@titlebg}{block title.bg}
-\usebeamercolor[fg]{block title} 
-\colorlet{beamer@tcb@titlefg}{block title.fg}
+\newcommand{\beamer@tcb@colini}[1][]{
+  \usebeamercolor[bg]{block body#1} 
+  \colorlet{beamer@tcb@bodybg}{block body#1.bg}
+  \usebeamercolor[fg]{block body#1} 
+  \colorlet{beamer@tcb@bodyfg}{block body#1.fg}
+  \usebeamercolor[bg]{block title#1} 
+  \colorlet{beamer@tcb@titlebg}{block title#1.bg}
+  \usebeamercolor[fg]{block title#1} 
+  \colorlet{beamer@tcb@titlefg}{block title#1.fg}
+}
+\beamer@tcb@colini
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -105,19 +108,18 @@
 
 % normal block
 \setbeamertemplate{block begin}{%
-  \usebeamercolor[bg]{block body} 
-  \usebeamercolor[bg]{block title}   
-  \colorlet{beamer@tcb@titlebg}{block title.bg}  
-  \colorlet{beamer@tcb@bodybg}{block body.bg}
-  \ifbeamer@tcb@rounded\else
+  \beamer@tcb@colini
+  \unless\ifbeamer@tcb@rounded
     \tcbset{title={\insertblocktitle}}
   \fi
   \ifx\insertblocktitle\@empty\else
     \tcbset{title={\insertblocktitle}}
   \fi
   \begin{tcolorbox}[
-    colbacktitle=block title.bg,
-    colback=block body.bg,
+    colback=beamer@tcb@bodybg,
+    colbacktitle=beamer@tcb@titlebg,
+    coltext=beamer@tcb@bodyfg,
+    coltitle=beamer@tcb@titlefg,
     before title={\usebeamercolor[fg]{block title}\usebeamerfont{block title}},
     before upper={\usebeamercolor[fg]{block body}\usebeamerfont{block body}},        
   ]
@@ -126,42 +128,40 @@
 
 % alert block
 \setbeamertemplate{block alerted begin}{%
-  \usebeamercolor[bg]{block body alerted} 
-  \usebeamercolor[bg]{block title alerted}   
-  \colorlet{beamer@tcb@titlebg}{block title alerted.bg}  
-  \colorlet{beamer@tcb@bodybg}{block body alerted.bg}
-  \ifbeamer@tcb@rounded\else
+  \beamer@tcb@colini[ alerted]
+  \unless\ifbeamer@tcb@rounded
     \tcbset{title={\insertblocktitle}}
   \fi  
   \ifx\insertblocktitle\@empty\else
     \tcbset{title={\insertblocktitle}}
   \fi
   \begin{tcolorbox}[
-    colbacktitle=block title alerted.bg,
-    colback=block body alerted.bg,
-    before title={\usebeamercolor[fg]{block title alerted}\usebeamerfont{block title alerted}},
-    before upper={\usebeamercolor[fg]{block body alerted}\usebeamerfont{block body alerted}},    
+    colback=beamer@tcb@bodybg,
+    colbacktitle=beamer@tcb@titlebg,
+    coltext=beamer@tcb@bodyfg,
+    coltitle=beamer@tcb@titlefg,
+    before title={\usebeamerfont{block title alerted}},
+    before upper={\usebeamerfont{block body alerted}},    
   ]
 } 
 \setbeamertemplate{block alerted end}{\end{tcolorbox}}
 
 % example block
 \setbeamertemplate{block example begin}{%
-  \usebeamercolor[bg]{block body example} 
-  \usebeamercolor[bg]{block title example}   
-  \colorlet{beamer@tcb@titlebg}{block title example.bg}  
-  \colorlet{beamer@tcb@bodybg}{block body example.bg}
-  \ifbeamer@tcb@rounded\else
+\beamer@tcb@colini[ example]
+  \unless\ifbeamer@tcb@rounded
     \tcbset{title={\insertblocktitle}}
   \fi  
   \ifx\insertblocktitle\@empty\else
     \tcbset{title={\insertblocktitle}}
   \fi
   \begin{tcolorbox}[
-    colbacktitle=beamer@tcb@titlebg,
     colback=beamer@tcb@bodybg,
-    before title={\usebeamercolor[fg]{block title example}\usebeamerfont{block title example}},
-    before upper={\usebeamercolor[fg]{block body example}\usebeamerfont{block body example}},      
+    colbacktitle=beamer@tcb@titlebg,
+    coltext=beamer@tcb@bodyfg,
+    coltitle=beamer@tcb@titlefg,
+    before title={\usebeamerfont{block title example}},
+    before upper={\usebeamerfont{block body example}},      
   ]
 } 
 \setbeamertemplate{block example end}{\end{tcolorbox}}
