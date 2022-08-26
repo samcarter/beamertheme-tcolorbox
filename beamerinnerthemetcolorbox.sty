@@ -44,6 +44,21 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+% Colours
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usebeamercolor[bg]{block body} 
+\colorlet{beamer@tcb@bodybg}{block body.bg}
+\usebeamercolor[fg]{block body} 
+\colorlet{beamer@tcb@bodyfg}{block body.fg}
+\usebeamercolor[bg]{block title} 
+\colorlet{beamer@tcb@titlebg}{block title.bg}
+\usebeamercolor[fg]{block title} 
+\colorlet{beamer@tcb@titlefg}{block title.fg}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 % General Settings
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,7 +70,11 @@
   boxrule=0cm,
   frame hidden,
   top=1.5mm,
-  bottom=0.5mm
+  bottom=0.5mm,
+  colback=beamer@tcb@bodybg,
+  colbacktitle=beamer@tcb@titlebg,
+  coltext=beamer@tcb@bodyfg,
+  coltitle=beamer@tcb@titlefg,
 }
 
 % optional settings
@@ -85,8 +104,8 @@
 \setbeamertemplate{block begin}{%
   \usebeamercolor[bg]{block body} 
   \usebeamercolor[bg]{block title}   
-  \colorlet{beamer@tcb@topshade}{block title.bg}  
-  \colorlet{beamer@tcb@bottomshade}{block body.bg}
+  \colorlet{beamer@tcb@titlebg}{block title.bg}  
+  \colorlet{beamer@tcb@bodybg}{block body.bg}
   \ifbeamer@tcb@rounded\else
     \tcbset{title={\insertblocktitle}}
   \fi
@@ -115,8 +134,8 @@
 \setbeamertemplate{block alerted begin}{%
   \usebeamercolor[bg]{block body alerted} 
   \usebeamercolor[bg]{block title alerted}   
-  \colorlet{beamer@tcb@topshade}{block title alerted.bg}  
-  \colorlet{beamer@tcb@bottomshade}{block body alerted.bg}
+  \colorlet{beamer@tcb@titlebg}{block title alerted.bg}  
+  \colorlet{beamer@tcb@bodybg}{block body alerted.bg}
   \ifbeamer@tcb@rounded\else
     \tcbset{title={\insertblocktitle}}
   \fi  
@@ -145,8 +164,8 @@
 \setbeamertemplate{block example begin}{%
   \usebeamercolor[bg]{block body example} 
   \usebeamercolor[bg]{block title example}   
-  \colorlet{beamer@tcb@topshade}{block title example.bg}  
-  \colorlet{beamer@tcb@bottomshade}{block body example.bg}
+  \colorlet{beamer@tcb@titlebg}{block title example.bg}  
+  \colorlet{beamer@tcb@bodybg}{block body example.bg}
   \ifbeamer@tcb@rounded\else
     \tcbset{title={\insertblocktitle}}
   \fi  
@@ -163,8 +182,8 @@
     \fi
   \fi
   \begin{tcolorbox}[
-    colbacktitle=block title example.bg,
-    colback=block body example.bg,
+    colbacktitle=beamer@tcb@titlebg,
+    colback=beamer@tcb@bodybg,
     before title={\usebeamercolor[fg]{block title example}\usebeamerfont{block title example}},
     before upper={\usebeamercolor[fg]{block body example}\usebeamerfont{block body example}},      
   ]
