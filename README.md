@@ -1,4 +1,4 @@
-# TikZbricks
+# beamertheme-tcolorbox
 
 A beamer inner theme which reproduces standard beamer blocks using tcolorboxes
 
