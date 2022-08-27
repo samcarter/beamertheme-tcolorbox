@@ -22,9 +22,7 @@
 \usepackage[english]{babel}
 \usepackage[bitstream-charter]{mathdesign}
 \usepackage[most]{tcolorbox}
-\usepackage[paper=a4paper,margin=2.9cm]{geometry}
-\usepackage{url}
-\usepackage{xspace}
+\usepackage[paper=a4paper,hmargin=2.9cm,vmargin=2.5cm]{geometry}
 \usepackage{scrlayer-scrpage} 
 \usepackage[colorlinks=true,breaklinks=true,urlcolor=blendedblue,linkcolor=blendedblue,citecolor=blendedblue,filecolor=blendedblue]{hyperref}
 
@@ -33,8 +31,6 @@
 \addtokomafont{sectioning}{\color{blendedblue}}
 \addtokomafont{date}{\normalsize}
 \addtokomafont{author}{\normalsize}
-
-\newcommand{\code}[1]{{\textcolor{blendedblue}{\texttt{#1}}}}
 
 \lstdefinestyle{tcolorboxstyle}{%
 	language={[latex]TeX},
@@ -47,14 +43,28 @@
 }
 
 \tcbset{%
-	colframe=blendedblue,
+  toptitle=1mm,
+  left=2mm,
+  title={Example},
+  fonttitle=\large\sffamily,
+  colbacktitle=blendedblue!75!black,
+	colframe=blendedblue!75!black,
+  colback=blendedblue!75!black!10!white,
+  boxrule=0cm,
+  frame hidden,
+  arc=1.3mm,
 	arc=2mm,
 	sidebyside,
 	listing options={style=tcolorboxstyle},
 	bottom=0pt, 
 	top=0pt,
   lower separated=false,
-  comment style={scale=2}
+  comment style={scale=2},
+  enhanced,
+  drop fuzzy shadow=black!90,
+  title code app={
+    \shade[top color=blendedblue!75!black,bottom color=blendedblue!75!black!10!white] (title.south west) rectangle ([yshift=-1mm]title.south east); 
+  }        
 }
 
 \lstset{style=tcolorboxstyle}
@@ -80,15 +90,17 @@ Over the last decade of answering beamer problems and more recently also being o
 
 For all these cases, there is now an alternative to the default beamer blocks: The tcolorbox inner beamer theme will replace the usual beamer mechanism to draw blocks with tcolorboxes. The tcolorboxes will automatically adopt the look and feel (round vs.\ sharp corners and shadows) as well as the colours of the normal beamer blocks.
 
-The package is included in both \TeX{}Live and MiK\TeX\ and available from \textsc{CTAN} (\url{https://www.ctan.org/pkg/beamertheme-tcolorbox}). 
-The development version of this package is located at \url{github.com/samcarter/beamertheme-tcolorbox}. If you have any problems, ideas or other feedback, please make constructive use of the issue tracker.
+The package is included in \TeX{}Live 
+%and MiK\TeX\ 
+and available from \textsc{CTAN} (\url{https://www.ctan.org/pkg/beamertheme-tcolorbox}). 
+The development version of this package is located at \url{https://github.com/samcarter/beamertheme-tcolorbox}. If you have any problems, ideas or other feedback, please make constructive use of the issue tracker.
 
 Copyright \raisebox{0.2em}{\tiny\fontfamily{cmr}\selectfont\textcopyright} \texttt{samcarter}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the LaTeX project public licence, version 1.3c or later \url{http://www.latex-project.org/lppl.txt}.
 
 \section{Usage}
 
 The basic usage is fairly simple. One just needs to load the theme via 
-\begin{tcolorbox}
+\begin{tcolorbox}[title={}]
 \begin{lstlisting}
 \useinnertheme{tcolorbox}
 \end{lstlisting}
@@ -107,10 +119,8 @@ In this simple configuration, the look and feel of the new blocks will be taken 
   run pdflatex,
 }
 \documentclass{beamer}
-
 \usetheme{Madrid}
 \useinnertheme{tcolorbox}
-
 \begin{document}
 \begin{frame}
 \begin{block}{Title}
@@ -130,7 +140,7 @@ In this simple configuration, the look and feel of the new blocks will be taken 
 
 In addition to automatically adopting settings from the other themes, one can also influence the look and feel via the two options \lstinline|rounded| and \lstinline|shadow|, which can be set to \lstinline|true| or \lstinline|false| (calling either option without explicit \lstinline|true| or \lstinline|false| will set it to \lstinline|true|).
 
-\begin{tcolorbox}
+\begin{tcolorbox}[title={}]
 \begin{lstlisting}
 \useinnertheme[
   rounded
@@ -149,12 +159,10 @@ If one for example likes the Antibes theme, but prefers the blocks to have shado
   run pdflatex,
 }
 \documentclass{beamer}
-
 \usetheme{Antibes}
 \useinnertheme[
   shadow
 ]{tcolorbox}
-
 \begin{document}
 \begin{frame}
 \begin{block}{Title}
@@ -182,13 +190,10 @@ Beyond these two options, the users also has the myriads of options of the tcolo
 \documentclass{beamer}
 \usetheme{Ilmenau}
 \useinnertheme{tcolorbox}
-
 \tcbset{
   boxrule=3pt,
-  borderline=
-    {1pt}{0pt}{pink,dashed},
+  borderline={1pt}{0pt}{pink,dashed},
 }
-
 \begin{document}
 \begin{frame}
 \begin{block}{Title}
