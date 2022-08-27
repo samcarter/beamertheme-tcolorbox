@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- font colour for block body in default theme
+
 ## [v0.1]
 
 ### New
