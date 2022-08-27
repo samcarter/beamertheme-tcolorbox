@@ -49,14 +49,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\beamer@tcb@colini}[1][]{
-  \usebeamercolor[bg]{block body#1} 
+  \usebeamercolor*{block body#1} 
   \colorlet{beamer@tcb@bodybg}{block body#1.bg}
-  \usebeamercolor[fg]{block body#1} 
   \colorlet{beamer@tcb@bodyfg}{block body#1.fg}
-  \usebeamercolor[bg]{block title#1} 
+  \usebeamercolor*{block title#1} 
   \colorlet{beamer@tcb@titlebg}{block title#1.bg}
-  \usebeamercolor[fg]{block title#1} 
-  \colorlet{beamer@tcb@titlefg}{block title#1.fg}
+  \colorlet{beamer@tcb@titlefg}{block title#1.fg}  
+  \usebeamercolor{normal text}
 }
 \beamer@tcb@colini
 
@@ -121,7 +120,7 @@
     coltext=beamer@tcb@bodyfg,
     coltitle=beamer@tcb@titlefg,
     before title={\usebeamerfont{block title}},
-    before upper={\usebeamerfont{block body}},        
+    before upper={\usebeamercolor{block body}\usebeamerfont{block body}},        
   ]
 } 
 \setbeamertemplate{block end}{\end{tcolorbox}}
@@ -141,14 +140,14 @@
     coltext=beamer@tcb@bodyfg,
     coltitle=beamer@tcb@titlefg,
     before title={\usebeamerfont{block title alerted}},
-    before upper={\usebeamerfont{block body alerted}},    
+    before upper={\usebeamercolor{block body alerted}\usebeamerfont{block body alerted}},    
   ]
 } 
 \setbeamertemplate{block alerted end}{\end{tcolorbox}}
 
 % example block
 \setbeamertemplate{block example begin}{%
-\beamer@tcb@colini[ example]
+  \beamer@tcb@colini[ example]
   \unless\ifbeamer@tcb@rounded
     \tcbset{title={\insertblocktitle}}
   \fi  
@@ -161,7 +160,7 @@
     coltext=beamer@tcb@bodyfg,
     coltitle=beamer@tcb@titlefg,
     before title={\usebeamerfont{block title example}},
-    before upper={\usebeamerfont{block body example}},      
+    before upper={\usebeamercolor{block body example}\usebeamerfont{block body example}},      
   ]
 } 
 \setbeamertemplate{block example end}{\end{tcolorbox}}
