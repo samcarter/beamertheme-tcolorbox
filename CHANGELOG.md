@@ -4,10 +4,13 @@
 
 ### New
 
+- support for nested blocks
+
 ### Changed
 
 ### Fixed
 
+- fixed bug with textcolor of lists
 
 ## [v0.2]
 
