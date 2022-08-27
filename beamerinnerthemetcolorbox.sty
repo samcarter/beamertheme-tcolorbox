@@ -49,10 +49,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\beamer@tcb@colini}[1][]{
-  \usebeamercolor*{block body#1} 
+  \usebeamercolor{block body#1} 
   \colorlet{beamer@tcb@bodybg}{block body#1.bg}
   \colorlet{beamer@tcb@bodyfg}{block body#1.fg}
-  \usebeamercolor*{block title#1} 
+  \usebeamercolor{block title#1} 
   \colorlet{beamer@tcb@titlebg}{block title#1.bg}
   \colorlet{beamer@tcb@titlefg}{block title#1.fg}  
   \usebeamercolor{normal text}
@@ -65,7 +65,10 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tcbset{
-  oversize=0mm,
+  oversize=0mm
+}
+
+\tcbsetforeverylayer{
   left=0.05cm,
   right=0.05cm,
   enhanced,
@@ -81,7 +84,7 @@
 
 % optional settings
 \ifbeamer@tcb@rounded
-  \tcbset{
+  \tcbsetforeverylayer{
     arc=1.3mm,
     top=0.8mm,
     toptitle=0.2mm,
@@ -91,11 +94,11 @@
     }      
   }
 \else
-  \tcbset{sharpish corners}
+  \tcbsetforeverylayer{sharpish corners}
 \fi
 
 \ifbeamer@tcb@shadow
-  \tcbset{drop fuzzy shadow=black!90}
+  \tcbsetforeverylayer{drop fuzzy shadow=black!90}
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,10 +112,10 @@
 \setbeamertemplate{block begin}{%
   \beamer@tcb@colini
   \unless\ifbeamer@tcb@rounded
-    \tcbset{title={\insertblocktitle}}
+    \tcbsetforeverylayer{title={\insertblocktitle}}
   \fi
   \ifx\insertblocktitle\@empty\else
-    \tcbset{title={\insertblocktitle}}
+    \tcbsetforeverylayer{title={\insertblocktitle}}
   \fi
   \begin{tcolorbox}[
     colback=beamer@tcb@bodybg,
@@ -129,10 +132,10 @@
 \setbeamertemplate{block alerted begin}{%
   \beamer@tcb@colini[ alerted]
   \unless\ifbeamer@tcb@rounded
-    \tcbset{title={\insertblocktitle}}
+    \tcbsetforeverylayer{title={\insertblocktitle}}
   \fi  
   \ifx\insertblocktitle\@empty\else
-    \tcbset{title={\insertblocktitle}}
+    \tcbsetforeverylayer{title={\insertblocktitle}}
   \fi
   \begin{tcolorbox}[
     colback=beamer@tcb@bodybg,
@@ -149,10 +152,10 @@
 \setbeamertemplate{block example begin}{%
   \beamer@tcb@colini[ example]
   \unless\ifbeamer@tcb@rounded
-    \tcbset{title={\insertblocktitle}}
+    \tcbsetforeverylayer{title={\insertblocktitle}}
   \fi  
   \ifx\insertblocktitle\@empty\else
-    \tcbset{title={\insertblocktitle}}
+    \tcbsetforeverylayer{title={\insertblocktitle}}
   \fi
   \begin{tcolorbox}[
     colback=beamer@tcb@bodybg,
