@@ -118,7 +118,7 @@ ctanreadme= "README.md"
 packtdszip   = false
 installfiles = {"*.sty"}
 sourcefiles = {"*.sty"}  
-excludefiles = {"documentation.pdf","test.pdf"}
+excludefiles = {"documentation.pdf","test.pdf","*-listing-*.pdf"}
 
 -- configuring ctan upload ===========================================
 if not ok then
