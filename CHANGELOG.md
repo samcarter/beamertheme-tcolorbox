@@ -5,6 +5,7 @@
 ### New
 
 - support for nested blocks
+- added option to switch shading between title and body on/off
 
 ### Changed
 
