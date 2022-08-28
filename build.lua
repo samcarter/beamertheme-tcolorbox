@@ -118,7 +118,7 @@ ctanreadme= "README.md"
 packtdszip   = false
 installfiles = {"*.sty"}
 sourcefiles = {"*.sty"}  
-excludefiles = {"documentation.pdf","test.pdf","*-listing-*.pdf"}
+excludefiles = {"documentation.pdf","test.pdf","beamertheme-tcolorbox-doc-listing-*.pdf"}
 
 -- configuring ctan upload ===========================================
 if not ok then
@@ -145,4 +145,4 @@ uploadconfig = {
 }
 
 -- cleanup ===========================================================
-cleanfiles = {"beamertheme-tcolorbox-ctan.curlopt", "beamertheme-tcolorbox-ctan.zip"}
+cleanfiles = {"beamertheme-tcolorbox-ctan.curlopt", "beamertheme-tcolorbox-ctan.zip", "beamertheme-tcolorbox-doc-listing-*"}
