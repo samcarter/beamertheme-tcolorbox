@@ -24,17 +24,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifbeamer@tcb@rounded
 \newif\ifbeamer@tcb@shadow
+\newif\ifbeamer@tcb@shaded
 \def\beamer@tcb@true{true}
 
 \DeclareOptionBeamer{shadow}[true]{\csname beamer@tcb@shadow#1\endcsname}
 \DeclareOptionBeamer{rounded}[true]{\csname beamer@tcb@rounded#1\endcsname}
+\DeclareOptionBeamer{shaded}[true]{\csname beamer@tcb@shaded#1\endcsname}
 
 \ExecuteOptionsBeamer{shadow=false}
 \ExecuteOptionsBeamer{rounded=false}
+\ExecuteOptionsBeamer{shaded=false}
 
 % check options from other themes
 \ifdefined\beamer@themerounded@shadow
   \beamer@tcb@roundedtrue
+  \beamer@tcb@shadedtrue
   \ifx\beamer@themerounded@shadow\beamer@tcb@true
     \beamer@tcb@shadowtrue
   \fi
@@ -89,12 +93,17 @@
     top=0.8mm,
     toptitle=0.2mm,
     bottom=0mm,
-    title code app={
-      \shade[top color=beamer@tcb@titlebg,bottom color=beamer@tcb@bodybg] (title.south west) rectangle ([yshift=-0.5mm]title.south east); 
-    }      
   }
 \else
   \tcbsetforeverylayer{sharpish corners}
+\fi
+
+\ifbeamer@tcb@shaded
+  \tcbsetforeverylayer{
+    title code app={
+      \shade[top color=beamer@tcb@titlebg,bottom color=beamer@tcb@bodybg] (title.south west) rectangle ([yshift=-0.5mm]title.south east); 
+    }    
+  }
 \fi
 
 \ifbeamer@tcb@shadow
