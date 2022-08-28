@@ -28,7 +28,7 @@
 \def\beamer@tcb@true{true}
 
 \DeclareOptionBeamer{shadow}[true]{\csname beamer@tcb@shadow#1\endcsname}
-\DeclareOptionBeamer{rounded}[true]{\csname beamer@tcb@rounded#1\endcsname}
+\DeclareOptionBeamer{rounded}[true]{\csname beamer@tcb@rounded#1\endcsname\csname beamer@tcb@shaded#1\endcsname}
 \DeclareOptionBeamer{shaded}[true]{\csname beamer@tcb@shaded#1\endcsname}
 
 \ExecuteOptionsBeamer{shadow=false}
