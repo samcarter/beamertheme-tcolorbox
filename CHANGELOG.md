@@ -8,6 +8,7 @@
 
 ### Fixed
 
+- fixed problem with boxed title showing two titles
 
 ## [v0.3]
 
