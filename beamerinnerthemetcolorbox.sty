@@ -17,6 +17,14 @@
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins,hooks}
 
+\tcbset{
+  beamer@tcb@iftitle/.code n args={1}{
+    \ifbeamer@tcb@title
+      \pgfkeysalso{#1}
+    \fi
+  }
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Theme Options
@@ -25,6 +33,7 @@
 \newif\ifbeamer@tcb@rounded
 \newif\ifbeamer@tcb@shadow
 \newif\ifbeamer@tcb@shaded
+\newif\ifbeamer@tcb@title
 \def\beamer@tcb@true{true}
 
 \DeclareOptionBeamer{shadow}[true]{\csname beamer@tcb@shadow#1\endcsname}
@@ -96,6 +105,7 @@
   }
 \else
   \tcbsetforeverylayer{sharpish corners}
+  \beamer@tcb@titletrue
 \fi
 
 \ifbeamer@tcb@shaded
@@ -120,11 +130,8 @@
 % normal block
 \setbeamertemplate{block begin}{%
   \beamer@tcb@colini
-  \unless\ifbeamer@tcb@rounded
-    \tcbsetforeverylayer{title={\insertblocktitle}}
-  \fi
   \ifx\insertblocktitle\@empty\else
-    \tcbsetforeverylayer{title={\insertblocktitle}}
+    \beamer@tcb@titletrue
   \fi
   \begin{tcolorbox}[
     colback=beamer@tcb@bodybg,
@@ -133,7 +140,7 @@
     coltitle=beamer@tcb@titlefg,
     before title={\usebeamerfont{block title}},
     before upper={\usebeamercolor{block body}\usebeamerfont{block body}},
-    boxed title style={title={}}            
+    beamer@tcb@iftitle={title={\insertblocktitle}}
   ]
 } 
 \setbeamertemplate{block end}{\end{tcolorbox}}
@@ -141,11 +148,8 @@
 % alert block
 \setbeamertemplate{block alerted begin}{%
   \beamer@tcb@colini[ alerted]
-  \unless\ifbeamer@tcb@rounded
-    \tcbsetforeverylayer{title={\insertblocktitle}}
-  \fi  
   \ifx\insertblocktitle\@empty\else
-    \tcbsetforeverylayer{title={\insertblocktitle}}
+    \beamer@tcb@titletrue
   \fi
   \begin{tcolorbox}[
     colback=beamer@tcb@bodybg,
@@ -154,7 +158,7 @@
     coltitle=beamer@tcb@titlefg,
     before title={\usebeamerfont{block title alerted}},
     before upper={\usebeamercolor{block body alerted}\usebeamerfont{block body alerted}},    
-    boxed title style={title={}}
+    beamer@tcb@iftitle={title={\insertblocktitle}}
   ]
 } 
 \setbeamertemplate{block alerted end}{\end{tcolorbox}}
@@ -162,11 +166,8 @@
 % example block
 \setbeamertemplate{block example begin}{%
   \beamer@tcb@colini[ example]
-  \unless\ifbeamer@tcb@rounded
-    \tcbsetforeverylayer{title={\insertblocktitle}}
-  \fi  
   \ifx\insertblocktitle\@empty\else
-    \tcbsetforeverylayer{title={\insertblocktitle}}
+    \beamer@tcb@titletrue
   \fi
   \begin{tcolorbox}[
     colback=beamer@tcb@bodybg,
@@ -175,7 +176,7 @@
     coltitle=beamer@tcb@titlefg,
     before title={\usebeamerfont{block title example}},
     before upper={\usebeamercolor{block body example}\usebeamerfont{block body example}},      
-    boxed title style={title={}}
+    beamer@tcb@iftitle={title={\insertblocktitle}}
   ]
 } 
 \setbeamertemplate{block example end}{\end{tcolorbox}}
