@@ -139,6 +139,7 @@ In this simple configuration, the look and feel of the new blocks will be taken 
 
 In addition to automatically adopting settings from the other themes, one can also influence the look and feel via these options:
 \begin{description}
+\item[inmargin] controls if the block titles are placed in the left sidebar instead of the top of the block, e.g. for themes like \lstinline|Bergen| (default: \lstinline|false|)
 \item[rounded] controls if corners are rounded or sharp (default: \lstinline|false|)
 \item[shadow] controls if the block has a shadow (default: \lstinline|false|)
 \item[shaded] controls if there is a short colour gradient between the title and the body or if there is a sharp border between the colours (Default: \lstinline|false|; if rounded corners are activated, it is \lstinline|true|)
@@ -148,9 +149,10 @@ These options can be set to \lstinline|true| or \lstinline|false| (calling eithe
 \begin{tcolorbox}[title={}]
 \begin{lstlisting}
 \useinnertheme[
-  rounded
+  rounded,
   shadow=false,
-  shaded
+  shaded,
+  inmargin=false
 ]{tcolorbox}
 \end{lstlisting}
 \end{tcolorbox}
@@ -218,7 +220,6 @@ Beyond these two options, the users also has the myriads of options of the tcolo
 \section{Caveats and known issues}
 
 \begin{itemize}
-\item the tcolorbox inner theme is not yet optimised for the \lstinline|inmargin| inner  theme, which is e.g.\ used by the Bergen theme
 \item at the moment, this theme only applies to blocks. Things like the title page, which directly use beamercolorboxes, won't be replaced by tcolorboxes
 \end{itemize}
 

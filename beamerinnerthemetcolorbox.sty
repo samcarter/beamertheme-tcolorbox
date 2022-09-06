@@ -34,15 +34,18 @@
 \newif\ifbeamer@tcb@shadow
 \newif\ifbeamer@tcb@shaded
 \newif\ifbeamer@tcb@title
+\newif\ifbeamer@tcb@inmargin
 \def\beamer@tcb@true{true}
 
 \DeclareOptionBeamer{shadow}[true]{\csname beamer@tcb@shadow#1\endcsname}
 \DeclareOptionBeamer{rounded}[true]{\csname beamer@tcb@rounded#1\endcsname\csname beamer@tcb@shaded#1\endcsname}
 \DeclareOptionBeamer{shaded}[true]{\csname beamer@tcb@shaded#1\endcsname}
+\DeclareOptionBeamer{inmargin}[true]{\csname beamer@tcb@inmargin#1\endcsname}
 
 \ExecuteOptionsBeamer{shadow=false}
 \ExecuteOptionsBeamer{rounded=false}
 \ExecuteOptionsBeamer{shaded=false}
+\ExecuteOptionsBeamer{inmargin=false}
 
 % check options from other themes
 \ifdefined\beamer@themerounded@shadow
@@ -51,6 +54,10 @@
   \ifx\beamer@themerounded@shadow\beamer@tcb@true
     \beamer@tcb@shadowtrue
   \fi
+\fi
+
+\ifdefined\beamer@putleft
+  \beamer@tcb@inmargintrue
 \fi
 
 \ProcessOptionsBeamer
@@ -118,6 +125,15 @@
 
 \ifbeamer@tcb@shadow
   \tcbsetforeverylayer{drop fuzzy shadow=black!90}
+\fi
+
+\ifbeamer@tcb@inmargin
+  \tcbsetforeverylayer{
+    detach title, 
+    overlay={
+      \node[anchor=north east,align=right,text width=\dimexpr\beamer@leftsidebar-\beamer@leftmargin-\beamer@rightmargin\relax] at ([xshift=-\beamer@leftmargin]frame.north west) {\tcbtitle};
+    }
+  }
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
