@@ -4,6 +4,8 @@
 
 ### New
 
+- now compatible with beamer themes based on `inmargin`, e.g. the Bergen theme
+
 ### Changed
 
 ### Fixed
