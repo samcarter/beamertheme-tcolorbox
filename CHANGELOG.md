@@ -4,6 +4,9 @@
 
 ### New
 
+- now also patches title, section etc. pages to use tcolorboxes instead of beamer boxes
+- new option to switch on/off if an empty block title should be shown
+
 ### Changed
 
 ### Fixed
