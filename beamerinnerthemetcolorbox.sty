@@ -177,18 +177,31 @@
 \setbeamertemplate{block example begin}{\begin{beamer@tcb@block}[ example]} 
 \setbeamertemplate{block example end}{\end{beamer@tcb@block}}
 
-    \beamer@tcb@titletrue
-  \fi
-  \begin{tcolorbox}[
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% patch title page etc.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\beamer@tcb@patchcolorbox}{%
+  \renewtcolorbox{beamercolorbox}[2][]{%
+    code={%
+      \usebeamercolor{##2}% 
+      \colorlet{beamer@tcb@bodybg}{##2.bg}%
+      \colorlet{beamer@tcb@bodyfg}{##2.fg}%
+      \ifbeamercolorempty[bg]{##2}{}{\beamer@tcb@colorfalse}%
+    },
     colback=beamer@tcb@bodybg,
-    colbacktitle=beamer@tcb@titlebg,
     coltext=beamer@tcb@bodyfg,
-    coltitle=beamer@tcb@titlefg,
-    before title={\usebeamerfont{block title example}},
-    before upper={\usebeamercolor{block body example}\usebeamerfont{block body example}},      
-    beamer@tcb@iftitle={title={\insertblocktitle}}
-  ]
-} 
-\setbeamertemplate{block example end}{\end{tcolorbox}}
+    halign=center,
+    beamer@tcb@if={\ifbeamer@tcb@color}{no shadow}{top=8pt,bottom=8pt}
+  }%
+}
+
+\addtobeamertemplate{title page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
+\addtobeamertemplate{part page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
+\addtobeamertemplate{section page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
+\addtobeamertemplate{subsection page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
 
 \mode<all>
+
