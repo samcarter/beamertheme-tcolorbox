@@ -18,9 +18,11 @@
 \tcbuselibrary{skins,hooks}
 
 \tcbset{
-  beamer@tcb@iftitle/.code n args={1}{
-    \ifbeamer@tcb@title
-      \pgfkeysalso{#1}
+  beamer@tcb@if/.code n args={3}{
+    #1
+      \pgfkeysalso{#2}
+    \else
+      \pgfkeysalso{#3}
     \fi
   }
 }
@@ -147,46 +149,34 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \mode<presentation>
 
+\newtcolorbox{beamer@tcb@block}[1][]{
+  code={
+    \beamer@tcb@colini[#1]
+    \ifx\insertblocktitle\@empty\else
+      \beamer@tcb@titletrue
+    \fi
+  },
+  colback=beamer@tcb@bodybg,
+  colbacktitle=beamer@tcb@titlebg,
+  coltext=beamer@tcb@bodyfg,
+  coltitle=beamer@tcb@titlefg,
+  before title={\usebeamerfont{block title}},
+  before upper={\usebeamercolor{block body}\usebeamerfont{block body}},
+  beamer@tcb@if={\ifbeamer@tcb@title}{title={\insertblocktitle}}{},
+}
+
 % normal block
-\setbeamertemplate{block begin}{%
-  \beamer@tcb@colini
-  \ifx\insertblocktitle\@empty\else
-    \beamer@tcb@titletrue
-  \fi
-  \begin{tcolorbox}[
-    colback=beamer@tcb@bodybg,
-    colbacktitle=beamer@tcb@titlebg,
-    coltext=beamer@tcb@bodyfg,
-    coltitle=beamer@tcb@titlefg,
-    before title={\usebeamerfont{block title}},
-    before upper={\usebeamercolor{block body}\usebeamerfont{block body}},
-    beamer@tcb@iftitle={title={\insertblocktitle}}
-  ]
-} 
-\setbeamertemplate{block end}{\end{tcolorbox}}
+\setbeamertemplate{block begin}{\begin{beamer@tcb@block}} 
+\setbeamertemplate{block end}{\end{beamer@tcb@block}}
 
 % alert block
-\setbeamertemplate{block alerted begin}{%
-  \beamer@tcb@colini[ alerted]
-  \ifx\insertblocktitle\@empty\else
-    \beamer@tcb@titletrue
-  \fi
-  \begin{tcolorbox}[
-    colback=beamer@tcb@bodybg,
-    colbacktitle=beamer@tcb@titlebg,
-    coltext=beamer@tcb@bodyfg,
-    coltitle=beamer@tcb@titlefg,
-    before title={\usebeamerfont{block title alerted}},
-    before upper={\usebeamercolor{block body alerted}\usebeamerfont{block body alerted}},    
-    beamer@tcb@iftitle={title={\insertblocktitle}}
-  ]
-} 
-\setbeamertemplate{block alerted end}{\end{tcolorbox}}
+\setbeamertemplate{block alerted begin}{\begin{beamer@tcb@block}[ alerted]} 
+\setbeamertemplate{block alerted end}{\end{beamer@tcb@block}}
 
 % example block
-\setbeamertemplate{block example begin}{%
-  \beamer@tcb@colini[ example]
-  \ifx\insertblocktitle\@empty\else
+\setbeamertemplate{block example begin}{\begin{beamer@tcb@block}[ example]} 
+\setbeamertemplate{block example end}{\end{beamer@tcb@block}}
+
     \beamer@tcb@titletrue
   \fi
   \begin{tcolorbox}[
