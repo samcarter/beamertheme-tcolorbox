@@ -35,17 +35,21 @@
 \newif\ifbeamer@tcb@shaded
 \newif\ifbeamer@tcb@title
 \newif\ifbeamer@tcb@inmargin
+\newif\ifbeamer@tcb@color
+\beamer@tcb@colortrue
 \def\beamer@tcb@true{true}
 
 \DeclareOptionBeamer{shadow}[true]{\csname beamer@tcb@shadow#1\endcsname}
-\DeclareOptionBeamer{rounded}[true]{\csname beamer@tcb@rounded#1\endcsname\csname beamer@tcb@shaded#1\endcsname}
+\DeclareOptionBeamer{rounded}[true]{\csname beamer@tcb@rounded#1\endcsname\csname beamer@tcb@shaded#1\endcsname\csname beamer@tcb@titlefalse\endcsname}
 \DeclareOptionBeamer{shaded}[true]{\csname beamer@tcb@shaded#1\endcsname}
 \DeclareOptionBeamer{inmargin}[true]{\csname beamer@tcb@inmargin#1\endcsname}
+\DeclareOptionBeamer{title}[true]{\csname beamer@tcb@title#1\endcsname}
 
 \ExecuteOptionsBeamer{shadow=false}
 \ExecuteOptionsBeamer{rounded=false}
 \ExecuteOptionsBeamer{shaded=false}
 \ExecuteOptionsBeamer{inmargin=false}
+\ExecuteOptionsBeamer{title=true}
 
 % check options from other themes
 \ifdefined\beamer@themerounded@shadow
@@ -54,6 +58,7 @@
   \ifx\beamer@themerounded@shadow\beamer@tcb@true
     \beamer@tcb@shadowtrue
   \fi
+  \beamer@tcb@titlefalse
 \fi
 
 \ifdefined\beamer@putleft
@@ -112,7 +117,6 @@
   }
 \else
   \tcbsetforeverylayer{sharpish corners}
-  \beamer@tcb@titletrue
 \fi
 
 \ifbeamer@tcb@shaded
