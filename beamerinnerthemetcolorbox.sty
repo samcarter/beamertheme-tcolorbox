@@ -17,14 +17,47 @@
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins,hooks}
 
+\providecommand\@secondofthree[3]{#2}
+
 \tcbset{
-  beamer@tcb@if/.code n args={3}{
-    #1
-      \pgfkeysalso{#2}
-    \else
-      \pgfkeysalso{#3}
-    \fi
+  beamer@tcb@if/.code n args = {3}{%  
+    \csname #1\endcsname\expandafter\@secondofthree\fi  
+    \@secondoftwo{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}%
   }
+}
+\newif\ifbeamer@tcb@rounded
+\newif\ifbeamer@tcb@shadow
+\newif\ifbeamer@tcb@shaded
+\newif\ifbeamer@tcb@title
+\newif\ifbeamer@tcb@inmargin
+\newif\ifbeamer@tcb@color
+\newif\ifbeamer@tcb@left
+\newif\ifbeamer@tcb@right
+\newif\ifbeamer@tcb@center
+\beamer@tcb@colortrue
+\def\beamer@tcb@true{true}
+
+\tikzset{
+  /beamer@tcb/.cd,
+  wd/.store in = \beamer@tcb@wd,
+  wd = \textwidth,
+  dp/.code = \relax,
+  ht/.code = \relax,
+  left/.code = \beamer@tcb@lefttrue,
+  right/.code = \beamet@tcb@righttrue,
+  center/.code = \beamer@tcb@centertrue,
+  leftskip/.store in = \beamer@tcb@leftskip,
+  leftskip = 0pt,
+  rightskip/.store in = \beamer@tcb@rightskip,
+  rightskip = 0pt,
+  sep/.store in = \beamer@tcb@sep,
+  sep = 1mm,
+  colsep/.code = \relax,
+  colsep*/.code = \relax,
+  shadow/.code = \relax,
+  rounded/.code = \relax,
+  ignorebg/.code = \relax,
+  vmode/.code = \relax,
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -32,15 +65,6 @@
 % Theme Options
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newif\ifbeamer@tcb@rounded
-\newif\ifbeamer@tcb@shadow
-\newif\ifbeamer@tcb@shaded
-\newif\ifbeamer@tcb@title
-\newif\ifbeamer@tcb@inmargin
-\newif\ifbeamer@tcb@color
-\beamer@tcb@colortrue
-\def\beamer@tcb@true{true}
-
 \DeclareOptionBeamer{shadow}[true]{\csname beamer@tcb@shadow#1\endcsname}
 \DeclareOptionBeamer{rounded}[true]{\csname beamer@tcb@rounded#1\endcsname\csname beamer@tcb@shaded#1\endcsname\csname beamer@tcb@titlefalse\endcsname}
 \DeclareOptionBeamer{shaded}[true]{\csname beamer@tcb@shaded#1\endcsname}
@@ -162,7 +186,7 @@
   coltitle=beamer@tcb@titlefg,
   before title={\usebeamerfont{block title}},
   before upper={\usebeamercolor{block body}\usebeamerfont{block body}},
-  beamer@tcb@if={\ifbeamer@tcb@title}{title={\insertblocktitle}}{},
+  beamer@tcb@if={ifbeamer@tcb@title}{title={\insertblocktitle}}{},
 }
 
 % normal block
@@ -190,11 +214,13 @@
       \colorlet{beamer@tcb@bodybg}{##2.bg}%
       \colorlet{beamer@tcb@bodyfg}{##2.fg}%
       \ifbeamercolorempty[bg]{##2}{}{\beamer@tcb@colorfalse}%
+      \tikzset{/beamer@tcb/.cd,##1}%      
     },
     colback=beamer@tcb@bodybg,
     coltext=beamer@tcb@bodyfg,
-    halign=center,
-    beamer@tcb@if={\ifbeamer@tcb@color}{no shadow}{top=8pt,bottom=8pt}
+    beamer@tcb@if={ifbeamer@tcb@color}{no shadow}{boxsep=\beamer@tcb@sep},
+    width=\beamer@tcb@wd,
+    beamer@tcb@if={ifbeamer@tcb@center}{halign=center}{},   
   }%
 }
 
@@ -204,4 +230,3 @@
 \addtobeamertemplate{subsection page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
 
 \mode<all>
-
