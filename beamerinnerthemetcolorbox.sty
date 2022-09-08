@@ -47,9 +47,9 @@
   right/.code = \beamet@tcb@righttrue,
   center/.code = \beamer@tcb@centertrue,
   leftskip/.store in = \beamer@tcb@leftskip,
-  leftskip = 0pt,
+  leftskip = 0.05cm,
   rightskip/.store in = \beamer@tcb@rightskip,
-  rightskip = 0pt,
+  rightskip = 0.05cm,
   sep/.store in = \beamer@tcb@sep,
   sep = 1mm,
   colsep/.code = \relax,
@@ -220,7 +220,11 @@
     coltext=beamer@tcb@bodyfg,
     beamer@tcb@if={ifbeamer@tcb@color}{no shadow}{boxsep=\beamer@tcb@sep},
     width=\beamer@tcb@wd,
-    beamer@tcb@if={ifbeamer@tcb@center}{halign=center}{},   
+    beamer@tcb@if={ifbeamer@tcb@center}{halign=center}{},
+    beamer@tcb@if={ifbeamer@tcb@left}{halign=left}{},   
+    beamer@tcb@if={ifbeamer@tcb@right}{halign=right}{},    
+    left=\beamer@tcb@leftskip,
+    right=\beamer@tcb@rightskip,  
   }%
 }
 
