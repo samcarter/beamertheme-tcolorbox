@@ -28,12 +28,14 @@
 \newif\ifbeamer@tcb@rounded
 \newif\ifbeamer@tcb@shadow
 \newif\ifbeamer@tcb@shaded
-\newif\ifbeamer@tcb@title
+\newif\ifbeamer@tcb@showtitle
 \newif\ifbeamer@tcb@inmargin
 \newif\ifbeamer@tcb@color
 \newif\ifbeamer@tcb@left
 \newif\ifbeamer@tcb@right
 \newif\ifbeamer@tcb@center
+\newif\ifbeamer@tcb@titlepage
+\newif\ifbeamer@tcb@blocks
 \beamer@tcb@colortrue
 \def\beamer@tcb@true{true}
 
@@ -66,16 +68,20 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \DeclareOptionBeamer{shadow}[true]{\csname beamer@tcb@shadow#1\endcsname}
-\DeclareOptionBeamer{rounded}[true]{\csname beamer@tcb@rounded#1\endcsname\csname beamer@tcb@shaded#1\endcsname\csname beamer@tcb@titlefalse\endcsname}
+\DeclareOptionBeamer{rounded}[true]{\csname beamer@tcb@rounded#1\endcsname\csname beamer@tcb@shaded#1\endcsname\csname beamer@tcb@showtitlefalse\endcsname}
 \DeclareOptionBeamer{shaded}[true]{\csname beamer@tcb@shaded#1\endcsname}
 \DeclareOptionBeamer{inmargin}[true]{\csname beamer@tcb@inmargin#1\endcsname}
-\DeclareOptionBeamer{title}[true]{\csname beamer@tcb@title#1\endcsname}
+\DeclareOptionBeamer{showtitle}[true]{\csname beamer@tcb@showtitle#1\endcsname}
+\DeclareOptionBeamer{titlepage}[true]{\csname beamer@tcb@titlepage#1\endcsname}
+\DeclareOptionBeamer{blocks}[true]{\csname beamer@tcb@blocks#1\endcsname}
 
 \ExecuteOptionsBeamer{shadow=false}
 \ExecuteOptionsBeamer{rounded=false}
 \ExecuteOptionsBeamer{shaded=false}
 \ExecuteOptionsBeamer{inmargin=false}
-\ExecuteOptionsBeamer{title=true}
+\ExecuteOptionsBeamer{showtitle=true}
+\ExecuteOptionsBeamer{titlepage=true}
+\ExecuteOptionsBeamer{blocks=true}
 
 % check options from other themes
 \ifdefined\beamer@themerounded@shadow
@@ -84,7 +90,7 @@
   \ifx\beamer@themerounded@shadow\beamer@tcb@true
     \beamer@tcb@shadowtrue
   \fi
-  \beamer@tcb@titlefalse
+  \beamer@tcb@showtitlefalse
 \fi
 
 \ifdefined\beamer@putleft
@@ -177,7 +183,7 @@
   code={
     \beamer@tcb@colini[#1]
     \ifx\insertblocktitle\@empty\else
-      \beamer@tcb@titletrue
+      \beamer@tcb@showtitletrue
     \fi
   },
   colback=beamer@tcb@bodybg,
@@ -186,20 +192,17 @@
   coltitle=beamer@tcb@titlefg,
   before title={\usebeamerfont{block title}},
   before upper={\usebeamercolor{block body}\usebeamerfont{block body}},
-  beamer@tcb@if={ifbeamer@tcb@title}{title={\insertblocktitle}}{},
+  beamer@tcb@if={ifbeamer@tcb@showtitle}{title={\insertblocktitle}}{},
 }
 
-% normal block
-\setbeamertemplate{block begin}{\begin{beamer@tcb@block}} 
-\setbeamertemplate{block end}{\end{beamer@tcb@block}}
-
-% alert block
-\setbeamertemplate{block alerted begin}{\begin{beamer@tcb@block}[ alerted]} 
-\setbeamertemplate{block alerted end}{\end{beamer@tcb@block}}
-
-% example block
-\setbeamertemplate{block example begin}{\begin{beamer@tcb@block}[ example]} 
-\setbeamertemplate{block example end}{\end{beamer@tcb@block}}
+\ifbeamer@tcb@blocks
+  \setbeamertemplate{block begin}{\begin{beamer@tcb@block}} 
+  \setbeamertemplate{block end}{\end{beamer@tcb@block}}
+  \setbeamertemplate{block alerted begin}{\begin{beamer@tcb@block}[ alerted]} 
+  \setbeamertemplate{block alerted end}{\end{beamer@tcb@block}}
+  \setbeamertemplate{block example begin}{\begin{beamer@tcb@block}[ example]} 
+  \setbeamertemplate{block example end}{\end{beamer@tcb@block}}
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -228,9 +231,11 @@
   }%
 }
 
-\addtobeamertemplate{title page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
-\addtobeamertemplate{part page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
-\addtobeamertemplate{section page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
-\addtobeamertemplate{subsection page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
+\ifbeamer@tcb@titlepage
+  \addtobeamertemplate{title page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
+  \addtobeamertemplate{part page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
+  \addtobeamertemplate{section page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
+  \addtobeamertemplate{subsection page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
+\fi
 
 \mode<all>

@@ -137,30 +137,19 @@ In this simple configuration, the look and feel of the new blocks will be taken 
 
 \section{Options}
 
-In addition to automatically adopting settings from the other themes, one can also influence the look and feel via these options:
+In addition to automatically adopting settings from other themes, one can also explicitly influence the look and feel via these options:
 \begin{description}
+\item[blocks] controls if tcolorboxes should be used for beamer blocks (default: \lstinline|true|)
 \item[inmargin] controls if the block titles are placed in the left sidebar instead of the top of the block, e.g. for themes like \lstinline|Bergen| (default: \lstinline|false|, but set to \lstinline|true| if the \lstinline|inmargin| inner theme is detected)
 \item[rounded] controls if corners are rounded or sharp (default: \lstinline|false|, but set to \lstinline|true| if the \lstinline|rounded| inner theme is detected)
-\item[shadow] controls if the block has a shadow (default: \lstinline|false|, but set to \lstinline|true| if the \lstinline|shadow| outer theme is detected)
 \item[shaded] controls if there is a short colour gradient between the title and the body (default: \lstinline|false|, but set to \lstinline|true| if the block corners are rounded)
-\item[title] controls if a small coloured stripe is shown for blocks with empty title (default: \lstinline|true|, but set to \lstinline|false| if the block has rounded corners)
+\item[shadow] controls if the block has a shadow (default: \lstinline|false|, but set to \lstinline|true| if the \lstinline|shadow| outer theme is detected)
+\item[showtitle] controls if a small coloured stripe is shown for blocks with empty title (default: \lstinline|true|, but set to \lstinline|false| if the block has rounded corners)
+\item[titlepage] controls if tcolorboxes should be used for the title page, section page etc. (default: \lstinline|true|)
 \end{description}
 These options can be set to \lstinline|true| or \lstinline|false| (calling either option without explicit \lstinline|true| or \lstinline|false| will set it to \lstinline|true|).
 
-\begin{tcolorbox}[title={}]
-\begin{lstlisting}
-\useinnertheme[
-  inmargin=false,
-  rounded,
-  shadow=true,
-  shaded=false,
-  title
-]{tcolorbox}
-\end{lstlisting}
-\end{tcolorbox}
-
-If one for example likes the Antibes theme, but prefers the blocks to have shadows, they can now easily be added:
-
+If one for example likes the Antibes theme, but prefers the blocks to have shadows, they can now easily be added: \nopagebreak
 \begin{tcblisting}{
   listing and comment,
   pdf comment,
