@@ -68,6 +68,15 @@
 
 \lstset{style=tcolorboxstyle}
 
+%\makeatletter
+\newcommand{\prefix}{./build}
+\tcbset{
+  compilable listing/.style={listing file={\prefix/\jobname-listing-\thetcblistingcount.tex}},
+  run pdflatex/.style={run@system@command={cd\space \prefix;\space pdflatex}{\jobname-listing-\thetcblistingcount.tex}},%
+}
+%\makeatother
+
+
 % meta %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{The tcolorbox beamer inner theme}
 \subtitle{A beamer inner theme to reproduce standard beamer blocks using tcolorboxes}
