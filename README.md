@@ -2,7 +2,7 @@
 
 A beamer inner theme which reproduces standard beamer blocks using tcolorboxes
 
-Current version: 2022/09/06 version v0.4
+Current version: 2022/09/14 version v0.5
 
 This project is licensed under the LaTeX Project Public License v1.3c or later, see http://www.latex-project.org/lppl.txt
 

@@ -4,6 +4,15 @@
 
 ### New
 
+### Changed
+
+### Fixed
+
+
+## [v0.5]
+
+### New
+
 - now also patches title, section etc. pages to use tcolorboxes instead of beamer boxes
 - new option `showtitle` to switch on/off if an empty block title should be shown
 - new options `blocks` and `titlepage` which controll of the beamer blocks and the elements on the titlepage should be replaced with tcolorboxes
@@ -60,7 +69,8 @@
 
 ------
 
-[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.4...HEAD
+[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.5...HEAD
+[v0.5]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.4...v0.5
 [v0.4]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.3...v0.4
 [v0.3]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.2...v0.3
 [v0.2]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.1...v0.2
