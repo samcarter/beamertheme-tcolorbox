@@ -221,18 +221,19 @@
     },
     colback=beamer@tcb@bodybg,
     coltext=beamer@tcb@bodyfg,
-    beamer@tcb@if={ifbeamer@tcb@color}{no shadow}{boxsep=\beamer@tcb@sep},
+    beamer@tcb@if={ifbeamer@tcb@color}{no shadow,before skip=-7pt}{before skip=5pt,boxsep=\beamer@tcb@sep},
     width=\beamer@tcb@wd,
     beamer@tcb@if={ifbeamer@tcb@center}{halign=center}{},
     beamer@tcb@if={ifbeamer@tcb@left}{halign=left}{},   
     beamer@tcb@if={ifbeamer@tcb@right}{halign=right}{},    
     left=\beamer@tcb@leftskip,
     right=\beamer@tcb@rightskip,  
+    before upper={\strut},
   }%
 }
 
 \ifbeamer@tcb@titlepage
-  \addtobeamertemplate{title page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
+  \addtobeamertemplate{title page}{\begingroup\apptocmd{\insertsubtitle}{\strut}{}{}\beamer@tcb@patchcolorbox}{\endgroup}
   \addtobeamertemplate{part page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
   \addtobeamertemplate{section page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
   \addtobeamertemplate{subsection page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
