@@ -6,6 +6,8 @@
 
 ### Changed
 
+- improved spacing of tcolorboxes on title and section pages
+
 ### Fixed
 
 
