@@ -186,7 +186,7 @@ If one for example likes the Antibes theme, but prefers the blocks to have shado
 \end{document}
 \end{tcblisting}
 
-Beyond these two options, the users also has the myriads of options of the tcolobox package to their disposal, e.g.\ via \lstinline|\tcbset{...}|:
+Beyond these two options, the users also has the myriads of options of the tcolobox package to their disposal, e.g.\ via \lstinline|\tcbset{...}| or \lstinline|\tcbsetforeverylayer{...}|:
 
 \begin{tcblisting}{
   listing and comment,
@@ -196,10 +196,11 @@ Beyond these two options, the users also has the myriads of options of the tcolo
   run pdflatex,
 }
 \documentclass{beamer}
-\usetheme{Copenhagen}
+\usetheme{Ilmenau}
 \useinnertheme{tcolorbox}
 \tcbsetforeverylayer{
-  borderline={1pt}{0pt}{pink,dashed}, boxrule=3pt, 
+  borderline={1pt}{0pt}{
+    black,dashed}
 }
 \begin{document}
 \begin{frame}
