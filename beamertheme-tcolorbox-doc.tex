@@ -1,5 +1,3 @@
-% !TeX TS-program = latexmk -time -pdf -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode -shell-escape %%O %%S" %   | txs:///view-log | txs:///view-pdf 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Documentation for the tcolorbox inner theme
@@ -13,80 +11,37 @@
 % See http://www.latex-project.org/lppl.txt
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% !TeX program = txs:///arara
+% arara: latexmk: {
+% arara: --> engine: pdflatex,
+% arara: --> options: [
+% arara: -->    '-shell-escape',
+% arara: -->    '-synctex=1',
+% arara: -->    '-interaction=nonstopmode',
+% arara: -->  ]
+% arara: --> }
 \documentclass[parskip=half]{scrartcl}
 
-% packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[T1]{fontenc}	
-\usepackage[utf8]{inputenc}		
-\usepackage[english]{babel}
-\usepackage[bitstream-charter]{mathdesign}
-\usepackage[most]{tcolorbox}
-\usepackage[paper=a4paper,hmargin=2.9cm,vmargin=2.5cm]{geometry}
-\usepackage{scrlayer-scrpage} 
-\usepackage[colorlinks=true,breaklinks=true,urlcolor=blendedblue,linkcolor=blendedblue,citecolor=blendedblue,filecolor=blendedblue]{hyperref}
+% meta %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{The tcolorbox beamer inner theme}
+\subtitle{A beamer inner theme to replicate standard beamer blocks with tcolorboxes}
+\author{%
+  \texorpdfstring{
+    \texttt{samcarter}\\
+    \url{https://github.com/samcarter/beamertheme-tcolorbox}\\
+    \url{https://www.ctan.org/pkg/beamertheme-tcolorbox}
+  }{samcarter}}
+\date{Version v0.6 \textendash{} 2023/05/03}
 
-% customisation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\definecolor{blendedblue}{rgb}{0.2,0.2,0.7}
-\addtokomafont{sectioning}{\color{blendedblue}}
-\addtokomafont{date}{\normalsize}
-\addtokomafont{author}{\normalsize}
+\usepackage[
+  themecolor=samteal
+]{\jobname-settings}
 
-\lstdefinestyle{tcolorboxstyle}{%
-	language={[latex]TeX},
-	tabsize=2,
-	breaklines,
-	basicstyle=\ttfamily,
-	columns=fullflexible,
-%	texcsstyle=*\color{blendedblue}\bfseries,
-%	moretexcs={usetheme,useinnertheme},
-}
-
-\tcbset{%
-  toptitle=1mm,
-  left=2mm,
-  title={Example},
-  fonttitle=\large\sffamily,
-  colbacktitle=blendedblue!75!black,
-	colframe=blendedblue!75!black,
-  colback=blendedblue!75!black!10!white,
-  boxrule=0cm,
-  frame hidden,
-  arc=1.3mm,
-	arc=2mm,
-	sidebyside,
-	listing options={style=tcolorboxstyle},
-	bottom=0pt, 
-	top=0pt,
-  lower separated=false,
-  comment style={scale=2},
-  enhanced,
-  drop fuzzy shadow=black!90,
-  title code app={
-    \shade[top color=blendedblue!75!black,bottom color=blendedblue!75!black!10!white] (title.south west) rectangle ([yshift=-1mm]title.south east); 
-  }        
-}
-
-\lstset{style=tcolorboxstyle}
-
-%\makeatletter
 \newcommand{\prefix}{./build}
 \tcbset{
   compilable listing/.style={listing file={\prefix/\jobname-listing-\thetcblistingcount.tex}},
   run pdflatex/.style={run@system@command={cd\space \prefix;\space pdflatex}{\jobname-listing-\thetcblistingcount.tex}},%
 }
-%\makeatother
-
-
-% meta %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{The tcolorbox beamer inner theme}
-\subtitle{A beamer inner theme to reproduce standard beamer blocks using tcolorboxes}
-\author{%
-	\texorpdfstring{
-		\texttt{samcarter}\\
-		\url{https://github.com/samcarter/beamertheme-tcolorbox}\\
-		\url{https://www.ctan.org/pkg/beamertheme-tcolorbox}
-	}{samcarter}}
-\date{Version v0.6 \textendash{} 2023/05/03}
 
 \begin{document}
 \maketitle
@@ -106,65 +61,69 @@ Copyright \raisebox{0.2em}{\tiny\fontfamily{cmr}\selectfont\textcopyright} \text
 \section{Usage}
 
 The basic usage is fairly simple. One just needs to load the theme via 
-\begin{tcolorbox}[title={}]
-\begin{lstlisting}
+\begin{tcolorbox}[lower separated=false,title={Usage}]
+\begin{samcode}
 \useinnertheme{tcolorbox}
-\end{lstlisting}
+\end{samcode}
 \end{tcolorbox}
-and after that, one can use the normal beamer \lstinline|block| environment as usual. 
+and after that, one can use the normal beamer \saminline|block| environment as usual. 
 
-Behind the scenes, this will replace the default mechanism of puzzling together the block from two separate \lstinline|beamercolorboxes|, with one tcolorbox.
+Behind the scenes, this will replace the default mechanism of puzzling together the block from two separate \saminline|beamercolorboxes|, with one tcolorbox.
 
 In this simple configuration, the look and feel of the new blocks will be taken from other themes loaded in the presentation. For example if the Madrid theme is loaded, the resulting tcolorbox will have the usual colours, rounded corners and a shadow:
 
 \begin{tcblisting}{
+  title={Example},
   listing and comment,
   pdf comment,
   freeze pdf,
   compilable listing,
   run pdflatex,
+  comment style={scale=2}
 }
 \documentclass{beamer}
 \usetheme{Madrid}
 \useinnertheme{tcolorbox}
 \begin{document}
 \begin{frame}
-\begin{block}{Title}
-  Body
-\end{block}
-\begin{alertblock}{Title}
-  Body
-\end{alertblock}
-\begin{exampleblock}{Title}
-  Body
-\end{exampleblock}
+  \begin{block}{Title}
+    Body
+  \end{block}
+  \begin{alertblock}{Title}
+    Body
+  \end{alertblock}
+  \begin{exampleblock}{Title}
+    Body
+  \end{exampleblock}
 \end{frame}
 \end{document}
 \end{tcblisting}
 
-Additional settings done by user, like e.g. \lstinline|\setbeamertemplate{blocks}[rounded]|, won't be taken into account and the \lstinline|tcolorbox| inner theme should be loaded after such modifications.
+Additional settings done by user, like e.g. \saminline|\setbeamertemplate{blocks}[rounded]|, won't be taken into account and the \saminline|tcolorbox| inner theme should be loaded after such modifications.
 
 \section{Options}
 
 In addition to automatically adopting settings from other themes, one can also explicitly influence the look and feel via these options:
 \begin{description}
-\item[blocks] controls if tcolorboxes should be used for beamer blocks (default: \lstinline|true|)
-\item[inmargin] controls if the block titles are placed in the left sidebar instead of the top of the block, e.g. for themes like \lstinline|Bergen| (default: \lstinline|false|, but set to \lstinline|true| if the \lstinline|inmargin| inner theme is detected)
-\item[rounded] controls if corners are rounded or sharp (default: \lstinline|false|, but set to \lstinline|true| if the \lstinline|rounded| inner theme is detected)
-\item[shaded] controls if there is a short colour gradient between the title and the body (default: \lstinline|false|, but set to \lstinline|true| if the block corners are rounded)
-\item[shadow] controls if the block has a shadow (default: \lstinline|false|, but set to \lstinline|true| if the \lstinline|shadow| outer theme is detected)
-\item[showtitle] controls if a small coloured stripe is shown for blocks with empty title (default: \lstinline|true|, but set to \lstinline|false| if the block has rounded corners)
-\item[titlepage] controls if tcolorboxes should be used for the title page, section page etc. (default: \lstinline|true|)
+\item[blocks] controls if tcolorboxes should be used for beamer blocks (default: \saminline|true|)
+\item[inmargin] controls if the block titles are placed in the left sidebar instead of the top of the block, e.g. for themes like \saminline|Bergen| (default: \saminline|false|, but set to \saminline|true| if the \saminline|inmargin| inner theme is detected)
+\item[rounded] controls if corners are rounded or sharp (default: \saminline|false|, but set to \saminline|true| if the \saminline|rounded| inner theme is detected)
+\item[shaded] controls if there is a short colour gradient between the title and the body (default: \saminline|false|, but set to \saminline|true| if the block corners are rounded)
+\item[shadow] controls if the block has a shadow (default: \saminline|false|, but set to \saminline|true| if the \saminline|shadow| outer theme is detected)
+\item[showtitle] controls if a small coloured stripe is shown for blocks with empty title (default: \saminline|true|, but set to \saminline|false| if the block has rounded corners)
+\item[titlepage] controls if tcolorboxes should be used for the title page, section page etc. (default: \saminline|true|)
 \end{description}
-These options can be set to \lstinline|true| or \lstinline|false| (calling either option without explicit \lstinline|true| or \lstinline|false| will set it to \lstinline|true|).
+These options can be set to \saminline|true| or \saminline|false| (calling either option without explicit \saminline|true| or \saminline|false| will set it to \saminline|true|).
 
-If one for example likes the Antibes theme, but prefers the blocks to have shadows, they can now easily be added: \nopagebreak
+If one, for example, likes the Antibes theme, but prefers the blocks to have shadows, they can now easily be added: \nopagebreak
 \begin{tcblisting}{
+  title={Example},
   listing and comment,
   pdf comment,
   freeze pdf,
   compilable listing,
   run pdflatex,
+  comment style={scale=2}
 }
 \documentclass{beamer}
 \usetheme{Antibes}
@@ -173,46 +132,47 @@ If one for example likes the Antibes theme, but prefers the blocks to have shado
 ]{tcolorbox}
 \begin{document}
 \begin{frame}
-\begin{block}{Title}
-  Body
-\end{block}
-\begin{alertblock}{Title}
-  Body
-\end{alertblock}
-\begin{exampleblock}{Title}
-  Body
-\end{exampleblock}
+  \begin{block}{Title}
+    Body
+  \end{block}
+  \begin{alertblock}{Title}
+    Body
+  \end{alertblock}
+  \begin{exampleblock}{Title}
+    Body
+  \end{exampleblock}
 \end{frame}
 \end{document}
 \end{tcblisting}
 
-Beyond these two options, the users also has the myriads of options of the tcolobox package to their disposal, e.g.\ via \lstinline|\tcbset{...}| or \lstinline|\tcbsetforeverylayer{...}|:
+Beyond these two options, the users also has the myriads of options of the tcolobox package to their disposal, e.g.\ via \saminline|\tcbset{...}| or \saminline|\tcbsetforeverylayer{...}|:
 
 \begin{tcblisting}{
+  title={Example},
   listing and comment,
   pdf comment,
   freeze pdf,
   compilable listing,
   run pdflatex,
+  comment style={scale=2}
 }
 \documentclass{beamer}
 \usetheme{Ilmenau}
 \useinnertheme{tcolorbox}
 \tcbsetforeverylayer{
-  borderline={1pt}{0pt}{
-    black,dashed}
+  borderline={1pt}{0pt}{black,dashed}
 }
 \begin{document}
 \begin{frame}
-\begin{block}{Title}
-  Body
-\end{block}
-\begin{alertblock}{Title}
-  Body
-\end{alertblock}
-\begin{exampleblock}{Title}
-  Body
-\end{exampleblock}
+  \begin{block}{Title}
+    Body
+  \end{block}
+  \begin{alertblock}{Title}
+    Body
+  \end{alertblock}
+  \begin{exampleblock}{Title}
+    Body
+  \end{exampleblock}
 \end{frame}
 \end{document}
 \end{tcblisting}
