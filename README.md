@@ -12,7 +12,7 @@ The project repository, including a bug tracker, can be found at https://github.
 
 ### Usage
 
-``````
+```latex
 \documentclass{beamer}
 
 \usecolortheme{orchid}
@@ -27,7 +27,6 @@ The project repository, including a bug tracker, can be found at https://github.
 \end{frame}
 
 \end{document}
-``````
+```
 
 For more details, please consult the [package documentation](https://github.com/samcarter/beamertheme-tcolorbox/blob/main/documentation.pdf).
-
