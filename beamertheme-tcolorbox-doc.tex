@@ -37,7 +37,7 @@
   themecolor=samteal
 ]{\jobname-settings}
 
-\newcommand{\prefix}{./build}
+\newcommand{\prefix}{./include}
 \tcbset{
   compilable listing/.style={listing file={\prefix/\jobname-listing-\thetcblistingcount.tex}},
   run pdflatex/.style={run@system@command={cd\space \prefix;\space pdflatex}{\jobname-listing-\thetcblistingcount.tex}},%
