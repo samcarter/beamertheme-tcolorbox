@@ -4,6 +4,15 @@
 
 ### New
 
+### Changed
+
+### Fixed
+
+
+## [v0.7]
+
+### New
+
 - added DEPENDS.txt file
 
 ### Changed
@@ -82,7 +91,8 @@
 
 ------
 
-[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.6...HEAD
+[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.7...HEAD
+[v0.7]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.6...v0.7
 [v0.6]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.5...v0.6
 [v0.5]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.4...v0.5
 [v0.4]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.3...v0.4
