@@ -1,8 +1,8 @@
 # beamertheme-tcolorbox
 
-[![GitHub](https://img.shields.io/github/license/samcarter/beamertheme-tcolorbox.svg?color=blue)](http://www.latex-project.org/lppl.txt)
-[![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/samcarter/beamertheme-tcolorbox.svg?label=current%20version)](https://github.com/samcarter/beamertheme-tcolorbox/releases/latest)
-[![CTAN](https://img.shields.io/ctan/v/beamertheme-tcolorbox.svg)](https://ctan.org/pkg/beamertheme-tcolorbox)
+[![License](https://img.shields.io/github/license/samcarter/beamertheme-tcolorbox.svg?color=blue)](http://www.latex-project.org/lppl.txt)
+[![GitHub tag](https://img.shields.io/github/tag/samcarter/beamertheme-tcolorbox.svg?label=current%20version&color=blue)](https://github.com/samcarter/beamertheme-tcolorbox/releases/latest)
+[![CTAN](https://img.shields.io/ctan/v/beamertheme-tcolorbox.svg?color=blue)](https://ctan.org/pkg/beamertheme-tcolorbox)
 
 A beamer inner theme which reproduces standard beamer blocks using tcolorboxes.
 
