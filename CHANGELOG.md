@@ -8,6 +8,7 @@
 
 ### Fixed
 
+- added `\onslide<1>` to the end of blocks to avoid problem if users use `\pause` in a pgf-based environment like a tcolorbox (fix #3)
 
 ## [v0.7]
 
