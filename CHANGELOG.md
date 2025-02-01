@@ -6,8 +6,9 @@
 
 ### Changed
 
-### Fixed
+- reverted workaround for using `\pause` in blocks and instead added section to the doc with workarounds the user can choose from (close #3 and #4). 
 
+### Fixed
 
 ## [v0.8]
 
@@ -29,7 +30,6 @@
 
 ### Fixed
 
-
 ## [v0.6]
 
 ### New
@@ -39,7 +39,6 @@
 - improved spacing of tcolorboxes on title and section pages
 
 ### Fixed
-
 
 ## [v0.5]
 
@@ -52,7 +51,6 @@
 ### Changed
 
 ### Fixed
-
 
 ## [v0.4]
 
