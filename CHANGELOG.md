@@ -6,6 +6,15 @@
 
 ### Changed
 
+### Fixed
+
+
+## [v0.9]
+
+### New
+
+### Changed
+
 - reverted workaround for using `\pause` in blocks and instead added section to the doc with workarounds the user can choose from (close #3 and #4). 
 
 ### Fixed
@@ -99,7 +108,8 @@
 
 ------
 
-[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.8...HEAD
+[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.9...HEAD
+[v0.9]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.8...v0.9
 [v0.8]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.7...v0.8
 [v0.7]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.6...v0.7
 [v0.6]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.5...v0.6
