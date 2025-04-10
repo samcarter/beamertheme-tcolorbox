@@ -55,7 +55,7 @@
 
 - now also patches title, section etc. pages to use tcolorboxes instead of beamer boxes
 - new option `showtitle` to switch on/off if an empty block title should be shown
-- new options `blocks` and `titlepage` which controll of the beamer blocks and the elements on the titlepage should be replaced with tcolorboxes
+- new options `blocks` and `titlepage` which control of the beamer blocks and the elements on the titlepage should be replaced with tcolorboxes
 
 ### Changed
 
@@ -93,7 +93,7 @@
 ### Changed
 
 - internal changes to colour handling and colour shading below the title
-- styling tcolorboxes to match the colour of normal blocks (overwriteable via `\tcbset{}`)
+- styling tcolorboxes to match the colour of normal blocks (overwritable via `\tcbset{}`)
 - using `\tcbuselibrary` to avoid possible option clashes
 
 ### Fixed
