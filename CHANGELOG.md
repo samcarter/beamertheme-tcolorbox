@@ -4,6 +4,8 @@
 
 ### New
 
+Adding `\tcbthemeset` macro to only change options for the beamer blocks instead of all tcolorboxes
+
 ### Changed
 
 ### Fixed

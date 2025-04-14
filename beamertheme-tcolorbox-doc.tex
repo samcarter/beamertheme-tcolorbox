@@ -113,7 +113,7 @@ In addition to automatically adopting settings from other themes, one can also e
 \end{description}
 These options can be set to \saminline|true| or \saminline|false| (calling either option without explicit \saminline|true| or \saminline|false| will set it to \saminline|true|).
 
-If one, for example, likes the Antibes theme, but prefers the blocks to have shadows, they can now easily be added: \nopagebreak
+If one, for example, likes the Antibes theme, but prefers the blocks to have shadows, they can now easily be added:
 \begin{tcblisting}{
   title={Example},
   listing and comment,
@@ -143,8 +143,7 @@ If one, for example, likes the Antibes theme, but prefers the blocks to have sha
 \end{document}
 \end{tcblisting}
 
-Beyond these two options, the users also has the myriads of options of the tcolobox package to their disposal, e.g.\ via \saminline|\tcbset{...}| or \saminline|\tcbsetforeverylayer{...}|:
-
+Beyond these two options, the users also has the myriads of options of the tcolobox package to their disposal, e.g.\ via \saminline|\tcbthemeset{...}| to only change options for beamer blocks or \saminline|\tcbset{...}| and \saminline|\tcbsetforeverylayer{...}| to change options for all tcolorboxes:
 \begin{tcblisting}{
   title={Example},
   listing and comment,
@@ -157,7 +156,7 @@ Beyond these two options, the users also has the myriads of options of the tcolo
 \documentclass{beamer}
 \usetheme{Ilmenau}
 \useinnertheme{tcolorbox}
-\tcbsetforeverylayer{
+\tcbthemeset{
   borderline={1pt}{0pt}{black,dashed}
 }
 \begin{document}
@@ -171,6 +170,34 @@ Beyond these two options, the users also has the myriads of options of the tcolo
   \begin{exampleblock}{Title}
     Body
   \end{exampleblock}
+\end{frame}
+\end{document}
+\end{tcblisting}
+
+To make other tcoloboxes look like beamer blocks, one can access the collected options via \saminline|code={\pgfkeysalsofrom\tcbthemeoptions}|:
+\begin{tcblisting}{
+  title={Example},
+  listing and comment,
+  pdf comment,
+  freeze pdf,
+  compilable listing,
+  run pdflatex,
+  comment style={scale=2}
+}
+\documentclass{beamer}
+\usetheme{Berlin}
+\useinnertheme{tcolorbox}
+\begin{document}
+\begin{frame}
+  \begin{block}{Title}
+    Body
+  \end{block}
+  \begin{tcolorbox}[
+    title={Title},
+    code={\pgfkeysalsofrom\tcbthemeoptions}
+  ]
+    Body
+  \end{tcolorbox}
 \end{frame}
 \end{document}
 \end{tcblisting}

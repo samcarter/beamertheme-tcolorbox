@@ -62,6 +62,11 @@
   vmode/.code = \relax,
 }
 
+\newcommand*{\tcbthemeoptions}{}
+\newcommand{\tcbthemeset}[1]{%
+  \apptocmd{\tcbthemeoptions}{,#1}{}{}%
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Theme Options
@@ -121,11 +126,11 @@
 % General Settings
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\tcbset{
-  oversize=0mm
+\tcbthemeset{
+  every box on layer 1/.style={oversize=0mm}
 }
 
-\tcbsetforeverylayer{
+\tcbthemeset{
   left=0.05cm,
   right=0.05cm,
   enhanced,
@@ -141,18 +146,18 @@
 
 % optional settings
 \ifbeamer@tcb@rounded
-  \tcbsetforeverylayer{
+  \tcbthemeset{
     arc=1.3mm,
     top=0.8mm,
     toptitle=0.2mm,
     bottom=0mm,
   }
 \else
-  \tcbsetforeverylayer{sharpish corners}
+  \tcbthemeset{sharpish corners}
 \fi
 
 \ifbeamer@tcb@shaded
-  \tcbsetforeverylayer{
+  \tcbthemeset{
     title code app={
       \shade[top color=beamer@tcb@titlebg,bottom color=beamer@tcb@bodybg] (title.south west) rectangle ([yshift=-0.5mm]title.south east); 
     }    
@@ -160,11 +165,11 @@
 \fi
 
 \ifbeamer@tcb@shadow
-  \tcbsetforeverylayer{drop fuzzy shadow=black!90}
+  \tcbthemeset{drop fuzzy shadow=black!90}
 \fi
 
 \ifbeamer@tcb@inmargin
-  \tcbsetforeverylayer{
+  \tcbthemeset{
     detach title, 
     overlay={
       \node[anchor=north east,align=right,text width=\dimexpr\beamer@leftsidebar-\beamer@leftmargin-\beamer@rightmargin\relax] at ([xshift=-\beamer@leftmargin]frame.north west) {\tcbtitle};
@@ -181,6 +186,7 @@
 
 \newtcolorbox{beamer@tcb@block}[1][]{
   code={
+    \pgfkeysalsofrom\tcbthemeoptions
     \beamer@tcb@colini[#1]
     \ifx\insertblocktitle\@empty\else
       \beamer@tcb@showtitletrue
@@ -213,6 +219,7 @@
 \newcommand{\beamer@tcb@patchcolorbox}{%
   \renewtcolorbox{beamercolorbox}[2][]{%
     code={%
+      \pgfkeysalsofrom\tcbthemeoptions
       \usebeamercolor{##2}% 
       \colorlet{beamer@tcb@bodybg}{##2.bg}%
       \colorlet{beamer@tcb@bodyfg}{##2.fg}%
