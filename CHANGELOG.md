@@ -4,6 +4,15 @@
 
 ### New
 
+### Changed
+
+### Fixed
+
+
+## [v1.0]
+
+### New
+
 Adding `\tcbthemeset` macro to only change options for the beamer blocks instead of all tcolorboxes
 
 ### Changed
@@ -110,7 +119,8 @@ Adding `\tcbthemeset` macro to only change options for the beamer blocks instead
 
 ------
 
-[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.9...HEAD
+[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.0...HEAD
+[v1.0]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.9...v1.0
 [v0.9]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.8...v0.9
 [v0.8]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.7...v0.8
 [v0.7]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.6...v0.7
