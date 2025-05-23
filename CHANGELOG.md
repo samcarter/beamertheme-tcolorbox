@@ -8,12 +8,14 @@
 
 ### Fixed
 
+- fixed bug which caused `oversize` not being applied correctly
+
 
 ## [v1.0]
 
 ### New
 
-Adding `\tcbthemeset` macro to only change options for the beamer blocks instead of all tcolorboxes
+- Adding `\tcbthemeset` macro to only change options for the beamer blocks instead of all tcolorboxes
 
 ### Changed
 

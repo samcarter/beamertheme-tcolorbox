@@ -23,7 +23,13 @@
   beamer@tcb@if/.code n args = {3}{%  
     \csname #1\endcsname\expandafter\@secondofthree\fi  
     \@secondoftwo{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}%
-  }
+  },
+  beamer@tcb@iffirstlayer/.code 2 args = {%  
+    \ifnum\c@tcblayer<2
+      \expandafter\@secondoftwo
+    \fi
+    \@secondoftwo{\pgfkeysalso{#1}}{\pgfkeysalso{#2}}%
+  }  
 }
 \newif\ifbeamer@tcb@rounded
 \newif\ifbeamer@tcb@shadow
@@ -127,10 +133,6 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tcbthemeset{
-  every box on layer 1/.style={oversize=0mm}
-}
-
-\tcbthemeset{
   left=0.05cm,
   right=0.05cm,
   enhanced,
@@ -138,6 +140,7 @@
   frame hidden,
   top=1.5mm,
   bottom=0.5mm,
+  beamer@tcb@iffirstlayer={oversize=0mm}{},
   colback=beamer@tcb@bodybg,
   colbacktitle=beamer@tcb@titlebg,
   coltext=beamer@tcb@bodyfg,
