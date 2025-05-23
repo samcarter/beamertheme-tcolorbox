@@ -21,15 +21,15 @@
 
 \tcbset{
   beamer@tcb@if/.code n args = {3}{%  
-    \csname #1\endcsname\expandafter\@secondofthree\fi  
+    \csname #1\endcsname\expandafter\@secondofthree\fi
     \@secondoftwo{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}%
   },
-  beamer@tcb@iffirstlayer/.code 2 args = {%  
+  beamer@tcb@iffirstlayer/.code 2 args = {%
     \ifnum\c@tcblayer<2
       \expandafter\@secondoftwo
     \fi
     \@secondoftwo{\pgfkeysalso{#1}}{\pgfkeysalso{#2}}%
-  }  
+  }
 }
 \newif\ifbeamer@tcb@rounded
 \newif\ifbeamer@tcb@shadow
@@ -122,7 +122,7 @@
   \colorlet{beamer@tcb@bodyfg}{block body#1.fg}
   \usebeamercolor{block title#1} 
   \colorlet{beamer@tcb@titlebg}{block title#1.bg}
-  \colorlet{beamer@tcb@titlefg}{block title#1.fg}  
+  \colorlet{beamer@tcb@titlefg}{block title#1.fg}
   \usebeamercolor{normal text}
 }
 \beamer@tcb@colini
@@ -162,8 +162,8 @@
 \ifbeamer@tcb@shaded
   \tcbthemeset{
     title code app={
-      \shade[top color=beamer@tcb@titlebg,bottom color=beamer@tcb@bodybg] (title.south west) rectangle ([yshift=-0.5mm]title.south east); 
-    }    
+      \shade[top color=tcbcolbacktitle,bottom color=tcbcolback] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+    }
   }
 \fi
 
@@ -173,7 +173,7 @@
 
 \ifbeamer@tcb@inmargin
   \tcbthemeset{
-    detach title, 
+    detach title,
     overlay={
       \node[anchor=north east,align=right,text width=\dimexpr\beamer@leftsidebar-\beamer@leftmargin-\beamer@rightmargin\relax] at ([xshift=-\beamer@leftmargin]frame.north west) {\tcbtitle};
     }
@@ -223,21 +223,21 @@
   \renewtcolorbox{beamercolorbox}[2][]{%
     code={%
       \pgfkeysalsofrom\tcbthemeoptions
-      \usebeamercolor{##2}% 
+      \usebeamercolor{##2}%
       \colorlet{beamer@tcb@bodybg}{##2.bg}%
       \colorlet{beamer@tcb@bodyfg}{##2.fg}%
       \ifbeamercolorempty[bg]{##2}{}{\beamer@tcb@colorfalse}%
-      \tikzset{/beamer@tcb/.cd,##1}%      
+      \tikzset{/beamer@tcb/.cd,##1}%
     },
     colback=beamer@tcb@bodybg,
     coltext=beamer@tcb@bodyfg,
     beamer@tcb@if={ifbeamer@tcb@color}{no shadow}{boxsep=\beamer@tcb@sep},
     width=\beamer@tcb@wd,
     beamer@tcb@if={ifbeamer@tcb@center}{halign=center}{},
-    beamer@tcb@if={ifbeamer@tcb@left}{halign=left}{},   
-    beamer@tcb@if={ifbeamer@tcb@right}{halign=right}{},    
+    beamer@tcb@if={ifbeamer@tcb@left}{halign=left}{},
+    beamer@tcb@if={ifbeamer@tcb@right}{halign=right}{},
     left=\beamer@tcb@leftskip,
-    right=\beamer@tcb@rightskip,  
+    right=\beamer@tcb@rightskip,
     before upper={\strut},
   }%
 }
