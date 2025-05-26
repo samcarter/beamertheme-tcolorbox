@@ -199,7 +199,7 @@
     before-skip : length = 0em ,
     tag-begin : tokenlist = ,
     tag-end : tokenlist = ,
-    style : tokenlist = 
+    instance : tokenlist = 
   }
 \DeclareTemplateCode { titlepage-element } { xbeamer } { 1 }
   {
@@ -207,7 +207,7 @@
     before-skip = \l__xbeamer_titlelem_before_skip ,
     tag-begin   = \l__xbeamer_titlelem_tag_begin_tl ,
     tag-end     = \l__xbeamer_titlelem_tag_end_tl ,
-    style       = \l__xbeamer_titlelem_style_tl ,
+    instance    = \l__xbeamer_titlelem_instance_tl ,
   }
   {
     \tl_if_empty:nF {#1}
@@ -215,8 +215,9 @@
         \vspace { \l__xbeamer_titlelem_before_skip }
         \group_begin:
           \l__xbeamer_titlelem_tag_begin_tl
-          \begin{tcolorbox}[\l__xbeamer_titlelem_style_tl]
+          \begin{tcolorbox}[titlepage-\l__xbeamer_titlelem_instance_tl]
           #1
+          \str_if_eq:NNT {\l__xbeamer_titlelem_instance_tl} { title } {\tl_if_empty:nF {\@subtitle} {\par\smallskip\large\@subtitle\par}}
           \end{tcolorbox}
           \l__xbeamer_titlelem_tag_end_tl
         \group_end:
@@ -224,14 +225,19 @@
       }
   }
 \DeclareInstance { titlepage-element } { author } { xbeamer }
-  { style = titlepage-author }
+  { instance = author }
 \DeclareInstance { titlepage-element } { date } { xbeamer }
-  { style = titlepage-date }
+  { instance = date }
 \DeclareInstance { titlepage-element } { institute } { xbeamer }
-  { style = titlepage-institute }
+  { instance = institute }
 \DeclareInstance { titlepage-element } { title } { xbeamer }
-  { style = titlepage-title }
+  { instance = title }
 \DeclareInstance { titlepage-element } { subtitle } { xbeamer }
-  { style = titlepage-subtitle }  
+  { instance = subtitle }
+\EditTemplateDefaults{ titlepage }{ xbeamer }{
+    element-order = {title, author, institute, date},
+}
 \ExplSyntaxOff
+
+
 \fi % if titlepage
