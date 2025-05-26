@@ -4,6 +4,8 @@
 
 ### New
 
+- added experimental xbeamer theme
+
 ### Changed
 
 ### Fixed

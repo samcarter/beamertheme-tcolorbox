@@ -38,25 +38,9 @@
 \newif\ifxbeamer@tcb@titlepage
 \newif\ifxbeamer@tcb@blocks
 
-\tikzset{
-  /xbeamer@tcb/.cd,
-  block title bg/.initial = structure!75!black,
-  block title fg/.initial = white,
-  block body bg/.initial = structure!75!black!10!white,
-  block body fg/.initial = .,
-  alertblock title bg/.initial = alert!75!black,
-  alertblock title fg/.initial = white,
-  alertblock body bg/.initial = alert!75!black!10!white,
-  alertblock body fg/.initial = .,
-  exampleblock title bg/.initial = example!75!black,
-  exampleblock title fg/.initial = white,
-  exampleblock body bg/.initial = example!75!black!10!white,
-  exampleblock body fg/.initial = .,    
-}
-
-\newcommand*{\tcbthemeoptions}{}
+\newcommand*{\tcbthemeoptions}{block}
 \newcommand{\tcbthemeset}[1]{%
-  \apptocmd{\tcbthemeoptions}{,#1}{}{}%
+  \tcbset{block/.append style={#1}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -64,20 +48,35 @@
 % Theme Options
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \RequirePackage{xkeyval}
-\DeclareOptionX{shadow}[true]{\csname xbeamer@tcb@shadow#1\endcsname}
+\DeclareOptionX{shadow}[true]{
+  \csname xbeamer@tcb@shadow#1\endcsname
+}
 \DeclareOptionX{rounded}[true]{
   \csname xbeamer@tcb@rounded#1\endcsname
   \csname xbeamer@tcb@shaded#1\endcsname
   \csname xbeamer@tcb@showtitlefalse\endcsname
 }
-\DeclareOptionX{shaded}[true]{\csname xbeamer@tcb@shaded#1\endcsname}
-\DeclareOptionX{showtitle}[true]{\csname xbeamer@tcb@showtitle#1\endcsname}
-\DeclareOptionX{titlepage}[true]{\csname xbeamer@tcb@titlepage#1\endcsname}
-\DeclareOptionX{blocks}[true]{\csname xbeamer@tcb@blocks#1\endcsname}
-
-\ExecuteOptionsX{shadow=false,rounded=false,shaded=false,showtitle=true,titlepage=true,blocks=true}
+\DeclareOptionX{shaded}[true]{
+  \csname xbeamer@tcb@shaded#1\endcsname
+}
+\DeclareOptionX{showtitle}[true]{
+  \csname xbeamer@tcb@showtitle#1\endcsname
+}
+\DeclareOptionX{titlepage}[true]{
+  \csname xbeamer@tcb@titlepage#1\endcsname
+}
+\DeclareOptionX{blocks}[true]{
+  \csname xbeamer@tcb@blocks#1\endcsname
+}
+\ExecuteOptionsX{
+  shadow=false,
+  rounded=false,
+  shaded=false,
+  showtitle=true,
+  titlepage=true,
+  blocks=true
+}
 \ProcessOptionsX
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -85,37 +84,83 @@
 % General Settings
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\tcbthemeset{
-  enhanced,
-  before title={\strut},
-  before upper={\strut},
-  left=0.05cm,
-  right=0.05cm,
-  boxrule=0cm,
-  frame hidden,
-  top=1.5mm,
-  bottom=0.5mm,
-  xbeamer@tcb@iffirstlayer={oversize=0mm}{},
-  colbacktitle=\pgfkeysvalueof{/xbeamer@tcb/block title bg},
-  coltitle=\pgfkeysvalueof{/xbeamer@tcb/block title fg},
-  colback=\pgfkeysvalueof{/xbeamer@tcb/block body bg},
-  coltext=\pgfkeysvalueof{/xbeamer@tcb/block body fg},
-  xbeamer@tcb@if={ifxbeamer@tcb@rounded}{
-    arc=1.3mm,
-    top=0.8mm,
-    toptitle=0.2mm,
-    bottom=0mm
-  }{
-    sharpish corners
+\tcbset{
+  block/.style={
+    enhanced,
+    before title={\strut},
+    before upper={\strut},
+    left=0.05cm,
+    right=0.05cm,
+    boxrule=0cm,
+    frame hidden,
+    top=1.5mm,
+    bottom=0.5mm,
+    xbeamer@tcb@iffirstlayer={oversize=0mm}{},
+    colbacktitle=structure!75!black,
+    coltitle=white,
+    colback=tcbcolbacktitle!10,
+    xbeamer@tcb@if={ifxbeamer@tcb@rounded}{
+      arc=1.3mm,
+      top=0.8mm,
+      toptitle=0.2mm,
+      bottom=0mm
+    }{
+      sharpish corners
+    },
+    xbeamer@tcb@if={ifxbeamer@tcb@shaded}{
+      title code app={
+          \shade[top color=tcbcolbacktitle,bottom color=tcbcolback] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+        }
+    }{},
+    xbeamer@tcb@if={ifxbeamer@tcb@shadow}{
+      drop fuzzy shadow=black!90
+    }{}
   },
-  xbeamer@tcb@if={ifxbeamer@tcb@shaded}{
-    title code app={
-        \shade[top color=tcbcolbacktitle,bottom color=tcbcolback] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
-      }
-  }{},
-  xbeamer@tcb@if={ifxbeamer@tcb@shadow}{
-    drop fuzzy shadow=black!90
-  }{}
+  alertblock/.style={
+    block,
+    colbacktitle=alert!75!black,
+    colback=tcbcolbacktitle!10,
+  },
+  exampleblock/.style={
+    block,
+    colbacktitle=example!75!black,
+    colback=tcbcolbacktitle!10,
+  },
+  titlepage/.style={
+    halign=center,
+    enhanced,
+    frame hidden,
+    colback=white,
+    xbeamer@tcb@if={ifxbeamer@tcb@rounded}{
+      arc=1.3mm,
+    }{
+      sharpish corners
+    }
+  },
+  titlepage-title/.style={
+    titlepage,
+    fontupper=\Large,
+    colback=structure,
+    colupper=white,
+    boxsep=4mm,
+    xbeamer@tcb@if={ifxbeamer@tcb@shadow}{
+      drop fuzzy shadow=black!90
+    }{}
+  },
+  titlepage-subtitle/.style={
+    titlepage,
+    fontupper=\large
+  },
+  titlepage-author/.style={
+    titlepage
+  },
+  titlepage-institute/.style={
+    titlepage,
+    fontupper=\scriptsize
+  },
+  titlepage-date/.style={
+    titlepage
+  },
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -123,71 +168,70 @@
 % Defining blocks
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \ifxbeamer@tcb@blocks
-
-\renewtcolorbox{block}[2][]{
-  code={\pgfkeysalsofrom\tcbthemeoptions},
-  xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#2}}{title={#2}},
-  #1
-}
-
-\newtcolorbox{alertblock}[2][]{
-  code={\pgfkeysalsofrom\tcbthemeoptions},
-  colbacktitle=\pgfkeysvalueof{/xbeamer@tcb/alertblock title bg},
-  coltitle=\pgfkeysvalueof{/xbeamer@tcb/alertblock title fg},
-  colback=\pgfkeysvalueof{/xbeamer@tcb/alertblock body bg},
-  coltext=\pgfkeysvalueof{/xbeamer@tcb/alertblock body fg},
-  xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#2}}{title={#2}},
-  #1
-}
-
-\newtcolorbox{exampleblock}[2][]{
-  code={\pgfkeysalsofrom\tcbthemeoptions},
-  colbacktitle=\pgfkeysvalueof{/xbeamer@tcb/exampleblock title bg},
-  coltitle=\pgfkeysvalueof{/xbeamer@tcb/exampleblock title fg},
-  colback=\pgfkeysvalueof{/xbeamer@tcb/exampleblock body bg},
-  coltext=\pgfkeysvalueof{/xbeamer@tcb/exampleblock body fg},
-  xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#2}}{title={#2}},
-  #1
-}
-
+  \renewtcolorbox{block}[2][]{
+    block,
+    xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#2}}{title={#2}},
+    #1
+  }
+  \newtcolorbox{alertblock}[2][]{
+    alertblock,
+    xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#2}}{title={#2}},
+    #1
+  }
+  \newtcolorbox{exampleblock}[2][]{
+    exampleblock,
+    xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#2}}{title={#2}},
+    #1
+  }
 \fi % if blocks
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%% patch title page etc.
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%\newcommand{\xbeamer@tcb@patchcolorbox}{%
-%  \renewtcolorbox{beamercolorbox}[2][]{%
-%    code={%
-%      \pgfkeysalsofrom\tcbthemeoptions
-%      \usebeamercolor{##2}% 
-%      \colorlet{xbeamer@tcb@bodybg}{##2.bg}%
-%      \colorlet{xbeamer@tcb@bodyfg}{##2.fg}%
-%      \ifbeamercolorempty[bg]{##2}{}{\xbeamer@tcb@colorfalse}%
-%      \tikzset{/xbeamer@tcb/.cd,##1}%      
-%    },
-%    colback=xbeamer@tcb@bodybg,
-%    coltext=xbeamer@tcb@bodyfg,
-%    xbeamer@tcb@if={ifxbeamer@tcb@color}{no shadow}{boxsep=\xbeamer@tcb@sep},
-%    width=\xbeamer@tcb@wd,
-%    xbeamer@tcb@if={ifxbeamer@tcb@center}{halign=center}{},
-%    xbeamer@tcb@if={ifxbeamer@tcb@left}{halign=left}{},   
-%    xbeamer@tcb@if={ifxbeamer@tcb@right}{halign=right}{},    
-%    left=\xbeamer@tcb@leftskip,
-%    right=\xbeamer@tcb@rightskip,  
-%    before upper={\strut},
-%  }%
-%}
+% patch title page etc.
 %
-%\ifxbeamer@tcb@titlepage
-%  \addtobeamertemplate{title page}{\begingroup\ifx\insertsubtitle\@empty\else\apptocmd{\insertsubtitle}{\strut}{}{}\fi\xbeamer@tcb@patchcolorbox}{\endgroup}
-%  \addtobeamertemplate{part page}{\begingroup\xbeamer@tcb@patchcolorbox}{\endgroup}
-%  \addtobeamertemplate{section page}{\begingroup\xbeamer@tcb@patchcolorbox}{\endgroup}
-%  \addtobeamertemplate{subsection page}{\begingroup\xbeamer@tcb@patchcolorbox}{\endgroup}
-%\fi
-%
-%\mode<all>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifxbeamer@tcb@titlepage
+\ExplSyntaxOn
+\DeclareTemplateInterface { titlepage-element } { xbeamer } { 1 }
+  {
+    after-skip : length = 0em ,
+    before-skip : length = 0em ,
+    tag-begin : tokenlist = ,
+    tag-end : tokenlist = ,
+    style : tokenlist = 
+  }
+\DeclareTemplateCode { titlepage-element } { xbeamer } { 1 }
+  {
+    after-skip  = \l__xbeamer_titlelem_after_skip ,
+    before-skip = \l__xbeamer_titlelem_before_skip ,
+    tag-begin   = \l__xbeamer_titlelem_tag_begin_tl ,
+    tag-end     = \l__xbeamer_titlelem_tag_end_tl ,
+    style       = \l__xbeamer_titlelem_style_tl ,
+  }
+  {
+    \tl_if_empty:nF {#1}
+      {
+        \vspace { \l__xbeamer_titlelem_before_skip }
+        \group_begin:
+          \l__xbeamer_titlelem_tag_begin_tl
+          \begin{tcolorbox}[\l__xbeamer_titlelem_style_tl]
+          #1
+          \end{tcolorbox}
+          \l__xbeamer_titlelem_tag_end_tl
+        \group_end:
+        \vspace { \l__xbeamer_titlelem_after_skip }
+      }
+  }
+\DeclareInstance { titlepage-element } { author } { xbeamer }
+  { style = titlepage-author }
+\DeclareInstance { titlepage-element } { date } { xbeamer }
+  { style = titlepage-date }
+\DeclareInstance { titlepage-element } { institute } { xbeamer }
+  { style = titlepage-institute }
+\DeclareInstance { titlepage-element } { title } { xbeamer }
+  { style = titlepage-title }
+\DeclareInstance { titlepage-element } { subtitle } { xbeamer }
+  { style = titlepage-subtitle }  
+\ExplSyntaxOff
+\fi % if titlepage
