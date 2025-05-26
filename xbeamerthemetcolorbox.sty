@@ -20,11 +20,11 @@
 \providecommand\@secondofthree[3]{#2}
 
 \tcbset{
-  xbeamer@tcb@if/.code n args = {3}{%  
-    \csname #1\endcsname\expandafter\@secondofthree\fi  
+  xbeamer@tcb@if/.code n args = {3}{%
+    \csname #1\endcsname\expandafter\@secondofthree\fi
     \@secondoftwo{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}%
   },
-  xbeamer@tcb@iffirstlayer/.code 2 args = {%  
+  xbeamer@tcb@iffirstlayer/.code 2 args = {%
     \ifnum\c@tcblayer<2
       \expandafter\@secondoftwo
     \fi
@@ -147,10 +147,6 @@
       drop fuzzy shadow=black!90
     }{}
   },
-  titlepage-subtitle/.style={
-    titlepage,
-    fontupper=\large
-  },
   titlepage-author/.style={
     titlepage
   },
@@ -191,53 +187,58 @@
 % patch title page etc.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ifxbeamer@tcb@titlepage
 \ExplSyntaxOn
-\DeclareTemplateInterface { titlepage-element } { xbeamer } { 1 }
-  {
+\ifxbeamer@tcb@titlepage
+
+  \DeclareTemplateInterface{titlepage-element}{xbeamer}{1}{
     after-skip : length = 0em ,
     before-skip : length = 0em ,
     tag-begin : tokenlist = ,
     tag-end : tokenlist = ,
-    instance : tokenlist = 
+    instance : tokenlist =
   }
-\DeclareTemplateCode { titlepage-element } { xbeamer } { 1 }
-  {
+
+  \DeclareTemplateCode{titlepage-element}{xbeamer}{1}{
     after-skip  = \l__xbeamer_titlelem_after_skip ,
     before-skip = \l__xbeamer_titlelem_before_skip ,
     tag-begin   = \l__xbeamer_titlelem_tag_begin_tl ,
     tag-end     = \l__xbeamer_titlelem_tag_end_tl ,
     instance    = \l__xbeamer_titlelem_instance_tl ,
-  }
-  {
-    \tl_if_empty:nF {#1}
-      {
-        \vspace { \l__xbeamer_titlelem_before_skip }
-        \group_begin:
-          \l__xbeamer_titlelem_tag_begin_tl
-          \begin{tcolorbox}[titlepage-\l__xbeamer_titlelem_instance_tl]
+  }{
+    \tl_if_empty:nF {#1}{
+      \vspace{\l__xbeamer_titlelem_before_skip}
+      \group_begin:
+        \l__xbeamer_titlelem_tag_begin_tl
+        \begin{tcolorbox}[titlepage-\l__xbeamer_titlelem_instance_tl]
           #1
-          \str_if_eq:NNT {\l__xbeamer_titlelem_instance_tl} { title } {\tl_if_empty:nF {\@subtitle} {\par\smallskip\large\@subtitle\par}}
-          \end{tcolorbox}
-          \l__xbeamer_titlelem_tag_end_tl
-        \group_end:
-        \vspace { \l__xbeamer_titlelem_after_skip }
-      }
+          \str_if_eq:NNT {\l__xbeamer_titlelem_instance_tl}{title}{
+            \tl_if_empty:nF {\@subtitle}{
+              \par\medskip\large\@subtitle\par
+            }
+          }
+        \end{tcolorbox}
+        \l__xbeamer_titlelem_tag_end_tl
+      \group_end:
+      \vspace{\l__xbeamer_titlelem_after_skip}
+    }
   }
-\DeclareInstance { titlepage-element } { author } { xbeamer }
-  { instance = author }
-\DeclareInstance { titlepage-element } { date } { xbeamer }
-  { instance = date }
-\DeclareInstance { titlepage-element } { institute } { xbeamer }
-  { instance = institute }
-\DeclareInstance { titlepage-element } { title } { xbeamer }
-  { instance = title }
-\DeclareInstance { titlepage-element } { subtitle } { xbeamer }
-  { instance = subtitle }
-\EditTemplateDefaults{ titlepage }{ xbeamer }{
-    element-order = {title, author, institute, date},
-}
-\ExplSyntaxOff
 
+  \DeclareInstance{titlepage-element}{author}{xbeamer}{
+    instance = author
+  }
+  \DeclareInstance{titlepage-element}{date}{xbeamer}{
+    instance = date
+  }
+  \DeclareInstance{titlepage-element}{institute}{xbeamer}{
+    instance = institute
+  }
+  \DeclareInstance{titlepage-element}{title}{xbeamer}{
+    instance = title
+  }
+
+  \EditTemplateDefaults{titlepage}{xbeamer}{
+    element-order = {title, author, institute, date}
+  }
 
 \fi % if titlepage
+\ExplSyntaxOff
