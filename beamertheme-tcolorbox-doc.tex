@@ -26,6 +26,8 @@
   themecolor=samteal
 ]{\jobname-settings}
 
+\usepackage[edges]{forest}
+
 % meta %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{The tcolorbox beamer inner theme}
 \subtitle{A beamer inner theme to replicate standard beamer blocks with tcolorboxes}
@@ -186,10 +188,81 @@ There are some ways to avoid such problems:
 \item Alternatively, one could switch to another covered style for the presentation, e.g. by adding \saminline|\setbeamercovered{transparent=0}| to the preamble.
 \end{enumerate}
 
+\clearpage
 \section{xbeamer}
 
 There is also an experimental \saminline|xbeamer| version of the tcolorbox inner theme available from its github page\footnote{\url{https://github.com/samcarter/beamertheme-tcolorbox}}.
 
+Most of the theme options are the same, only the \saminline|inmargin| option does not exist:
+\begin{tcblisting}{
+  title={xbeamer theme},
+  listing and comment,
+  pdf comment,
+  freeze pdf,
+  compilable listing,
+  run latexmk={-lualatex -pdflualatex=lualatex-dev  -cd},
+  comment style={raster columns=1},
+}
+  % !TeX TS-program = lualatex-dev %
+  \DocumentMetadata{tagging=on,lang=en}
+  \documentclass{xbeamer}
+  \usepackage[
+    shadow,
+    rounded,
+    shaded,
+    showtitle,
+    titlepage,
+    blocks
+  ]{xbeamerthemetcolorbox} 
+  \begin{document}
+  \begin{frame}
+    \begin{block}{Title}
+      Body
+    \end{block}
+    \begin{alertblock}{Title}
+      Body
+    \end{alertblock}
+    \begin{exampleblock}{Title}
+      Body
+    \end{exampleblock}
+  \end{frame}
+  \end{document}
+\end{tcblisting}
+
+Internally, the tcolorbox xbeamer theme works a bit differently than the normal beamer theme and thus making customisations is a bit different, too. The xbeamer theme uses a set of tcolorbox styles to store the options used for the different blocks and boxes:
+\begin{center}
+\begin{forest}
+  baseline,
+  for tree={%
+    folder,
+    grow'=0,
+    font=\ttfamily,
+    draw
+  }
+  [titlepage
+    [titlepage-title]
+    [titlepage-author]
+    [titlepage-institute]
+    [titlepage-date]
+  ]
+\end{forest}
+\qquad
+\begin{forest}
+  baseline,
+  for tree={%
+    folder,
+    grow'=0,
+    font=\ttfamily,
+    draw
+  }
+  [block
+    [alertblock]
+    [exampleblock]
+  ]
+\end{forest}
+\end{center}
+
+These styles can be used to adjust the appearance of the different elements:
 \begin{tcblisting}{
   title={xbeamer theme},
   listing and comment,
@@ -210,24 +283,39 @@ There is also an experimental \saminline|xbeamer| version of the tcolorbox inner
   \author{Author Name}
   \institute{Cool Conference}
   
+  \tcbset{
+    titlepage/.append style={
+      colback=lightgray,
+      width=10cm
+    },
+    titlepage-title/.append style={
+      drop lifted shadow
+    },
+    block/.append style={
+      borderline={1pt}{0pt}{black,dashed}
+    },
+    alertblock/.append style={
+      colbacktitle=orange
+    },
+  }
+  
   \begin{document}
   
   \maketitle
   
   \begin{frame}
     \begin{block}{Title}
-    Content
+      Body
     \end{block}
     \begin{alertblock}{Title}
-    Content
+      Body
     \end{alertblock}
-    \begin{exampleblock}{Title}
-    Content
+    \begin{exampleblock}[colbacktitle=teal]{Title}
+      Body
     \end{exampleblock}
   \end{frame}
   
   \end{document}
 \end{tcblisting}
-
 
 \end{document}
