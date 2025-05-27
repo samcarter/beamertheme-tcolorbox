@@ -206,4 +206,48 @@ There are some ways to avoid such problems:
 \item Alternatively, one could switch to another covered style for the presentation, e.g. by adding \saminline|\setbeamercovered{transparent=0}| to the preamble.
 \end{enumerate}
 
+\section{xbeamer}
+
+There is also an experimental \saminline|xbeamer| version of the tcolorbox inner theme available from its github page\footnote{\url{https://github.com/samcarter/beamertheme-tcolorbox}}.
+
+\begin{tcblisting}{
+  title={xbeamer theme},
+  listing and comment,
+  pdf comment,
+  freeze pdf,
+  compilable listing,
+  run latexmk={-lualatex -pdflualatex=lualatex-dev  -cd},
+  comment style={raster columns=1},
+}
+  % !TeX TS-program = lualatex-dev %
+  \DocumentMetadata{tagging=on,lang=en}
+  \documentclass{xbeamer}
+  
+  \usepackage{xbeamerthemetcolorbox}
+  
+  \title{Some Very Interesting Title}
+  \subtitle{Subtitle}
+  \author{Author Name}
+  \institute{Cool Conference}
+  
+  \begin{document}
+  
+  \maketitle
+  
+  \begin{frame}
+    \begin{block}{Title}
+    Content
+    \end{block}
+    \begin{alertblock}{Title}
+    Content
+    \end{alertblock}
+    \begin{exampleblock}{Title}
+    Content
+    \end{exampleblock}
+  \end{frame}
+  
+  \end{document}
+\end{tcblisting}
+
+
 \end{document}
