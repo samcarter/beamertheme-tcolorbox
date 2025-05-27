@@ -31,6 +31,11 @@
     \@secondoftwo{\pgfkeysalso{#1}}{\pgfkeysalso{#2}}%
   }
 }
+
+\tcbset{
+  alt/.code args={<#1>#2#3}{\alt<#1>{\tcbset{#2}}{\tcbset{#3}}},
+}
+
 \newif\ifxbeamer@tcb@rounded
 \newif\ifxbeamer@tcb@shadow
 \newif\ifxbeamer@tcb@shaded
@@ -73,7 +78,7 @@
   shadow=false,
   rounded=false,
   shaded=false,
-  showtitle=true,
+  showtitle=false,
   titlepage=true,
   blocks=true
 }
@@ -109,7 +114,7 @@
     },
     xbeamer@tcb@if={ifxbeamer@tcb@shaded}{
       title code app={
-          \shade[top color=tcbcolbacktitle,bottom color=tcbcolback] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+          \shade[top color=tcbcolbacktitle,bottom color=tcbcolback,opacity=\kvtcb@opacitybacktitle] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
         }
     }{},
     xbeamer@tcb@if={ifxbeamer@tcb@shadow}{
@@ -157,6 +162,11 @@
   titlepage-date/.style={
     titlepage
   },
+  beamer hidden/.style={
+    opacityfill=0,
+    invisible,
+    no shadow
+  }
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -165,24 +175,27 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \ifxbeamer@tcb@blocks
-  \renewtcolorbox{block}[2][]{
+  \RenewTColorBox{block}{ d<> O{} m }{
     block,
-    xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#2}}{title={#2}},
-    #1
+    xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},
+    #2,
+    alt=<#1>{}{beamer hidden}
   }
-  \newtcolorbox{alertblock}[2][]{
+  \NewTColorBox{alertblock}{ d<> O{} m }{
     alertblock,
-    xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#2}}{title={#2}},
-    #1
+    xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},
+    #2,
+    alt=<#1>{}{beamer hidden}
   }
-  \newtcolorbox{exampleblock}[2][]{
+  \NewTColorBox{exampleblock}{ d<> O{} m }{
     exampleblock,
-    xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#2}}{title={#2}},
-    #1
+    xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},
+    #2,
+    alt=<#1>{}{beamer hidden}
   }
 \fi % if blocks
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % patch title page etc.
 %
@@ -242,3 +255,22 @@
 
 \fi % if titlepage
 \ExplSyntaxOff
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Avoid tagging warning for tcolorboxes
+% copied from u-fischer https://github.com/latex3/tagging-project/issues/73#issuecomment-2089027746
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\AddToHook{env/tcolorbox/before}{\par\tagstructbegin{tag=Div}}
+\AddToHook{env/tcolorbox/begin}{\tagpdfparaOff\tcbset{before upper=\tagpdfparaOn}}
+\AddToHook{env/tcolorbox/after}{\par\tagstructend}
+\AddToHook{env/block/before}{\par\tagstructbegin{tag=Div}}
+\AddToHook{env/block/begin}{\tagpdfparaOff\tcbset{before upper=\tagpdfparaOn}}
+\AddToHook{env/block/after}{\par\tagstructend}
+\AddToHook{env/alertblock/before}{\par\tagstructbegin{tag=Div}}
+\AddToHook{env/alertblock/begin}{\tagpdfparaOff\tcbset{before upper=\tagpdfparaOn}}
+\AddToHook{env/alertblock/after}{\par\tagstructend}
+\AddToHook{env/exampleblock/before}{\par\tagstructbegin{tag=Div}}
+\AddToHook{env/exampleblock/begin}{\tagpdfparaOff\tcbset{before upper=\tagpdfparaOn}}
+\AddToHook{env/exampleblock/after}{\par\tagstructend}
