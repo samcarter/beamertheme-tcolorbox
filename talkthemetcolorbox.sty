@@ -1,4 +1,4 @@
-% !TeX root = ./testing/xtest.tex
+% !TeX root = ./testing/talktest.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % The tcolorbox inner theme
@@ -12,7 +12,7 @@
 % See https://www.latex-project.org/lppl.txt
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ProvidesPackage{xbeamerthemetcolorbox}[2025/04/14 version v1.0 Beamer blocks with tcolorboxes]
+\ProvidesPackage{talkthemetcolorbox}[2025/04/14 version v1.0 Beamer blocks with tcolorboxes]
 
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins,hooks}
@@ -20,11 +20,11 @@
 \providecommand\@secondofthree[3]{#2}
 
 \tcbset{
-  xbeamer@tcb@if/.code n args = {3}{%
+  talk@tcb@if/.code n args = {3}{%
     \csname #1\endcsname\expandafter\@secondofthree\fi
     \@secondoftwo{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}%
   },
-  xbeamer@tcb@iffirstlayer/.code 2 args = {%
+  talk@tcb@iffirstlayer/.code 2 args = {%
     \ifnum\c@tcblayer<2
       \expandafter\@secondoftwo
     \fi
@@ -32,12 +32,12 @@
   }
 }
 
-\newif\ifxbeamer@tcb@rounded
-\newif\ifxbeamer@tcb@shadow
-\newif\ifxbeamer@tcb@shaded
-\newif\ifxbeamer@tcb@showtitle
-\newif\ifxbeamer@tcb@titlepage
-\newif\ifxbeamer@tcb@blocks
+\newif\iftalk@tcb@rounded
+\newif\iftalk@tcb@shadow
+\newif\iftalk@tcb@shaded
+\newif\iftalk@tcb@showtitle
+\newif\iftalk@tcb@titlepage
+\newif\iftalk@tcb@blocks
 
 \newcommand*{\tcbthemeoptions}{block}
 \newcommand{\tcbthemeset}[1]{%
@@ -51,24 +51,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{xkeyval}
 \DeclareOptionX{shadow}[true]{
-  \csname xbeamer@tcb@shadow#1\endcsname
+  \csname talk@tcb@shadow#1\endcsname
 }
 \DeclareOptionX{rounded}[true]{
-  \csname xbeamer@tcb@rounded#1\endcsname
-  \csname xbeamer@tcb@shaded#1\endcsname
-  \csname xbeamer@tcb@showtitlefalse\endcsname
+  \csname talk@tcb@rounded#1\endcsname
+  \csname talk@tcb@shaded#1\endcsname
+  \csname talk@tcb@showtitlefalse\endcsname
 }
 \DeclareOptionX{shaded}[true]{
-  \csname xbeamer@tcb@shaded#1\endcsname
+  \csname talk@tcb@shaded#1\endcsname
 }
 \DeclareOptionX{showtitle}[true]{
-  \csname xbeamer@tcb@showtitle#1\endcsname
+  \csname talk@tcb@showtitle#1\endcsname
 }
 \DeclareOptionX{titlepage}[true]{
-  \csname xbeamer@tcb@titlepage#1\endcsname
+  \csname talk@tcb@titlepage#1\endcsname
 }
 \DeclareOptionX{blocks}[true]{
-  \csname xbeamer@tcb@blocks#1\endcsname
+  \csname talk@tcb@blocks#1\endcsname
 }
 \ExecuteOptionsX{
   shadow=false,
@@ -96,11 +96,11 @@
     frame hidden,
     top=1.5mm,
     bottom=0.5mm,
-    xbeamer@tcb@iffirstlayer={oversize=0mm}{},
+    talk@tcb@iffirstlayer={oversize=0mm}{},
     colbacktitle=structure!75!black,
     coltitle=white,
     colback=tcbcolbacktitle!10,
-    xbeamer@tcb@if={ifxbeamer@tcb@rounded}{
+    talk@tcb@if={iftalk@tcb@rounded}{
       arc=1.3mm,
       top=0.8mm,
       toptitle=0.2mm,
@@ -108,12 +108,12 @@
     }{
       sharpish corners
     },
-    xbeamer@tcb@if={ifxbeamer@tcb@shaded}{
+    talk@tcb@if={iftalk@tcb@shaded}{
       title code app={
           \shade[top color=tcbcolbacktitle,bottom color=tcbcolback,opacity=\kvtcb@opacitybacktitle] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
         }
     }{},
-    xbeamer@tcb@if={ifxbeamer@tcb@shadow}{
+    talk@tcb@if={iftalk@tcb@shadow}{
       drop fuzzy shadow=black!90
     }{}
   },
@@ -132,7 +132,7 @@
     enhanced,
     frame hidden,
     colback=white,
-    xbeamer@tcb@if={ifxbeamer@tcb@rounded}{
+    talk@tcb@if={iftalk@tcb@rounded}{
       arc=1.3mm,
     }{
       sharpish corners
@@ -144,7 +144,7 @@
     colback=structure,
     colupper=white,
     boxsep=4mm,
-    xbeamer@tcb@if={ifxbeamer@tcb@shadow}{
+    talk@tcb@if={iftalk@tcb@shadow}{
       drop fuzzy shadow=black!90
     }{}
   },
@@ -170,22 +170,22 @@
 % Defining blocks
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ifxbeamer@tcb@blocks
+\iftalk@tcb@blocks
   \RenewTColorBox{block}{ d<> O{} m }{
     block,
-    xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},
+    talk@tcb@if={iftalk@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},
     #2,
     alt=<#1>{}{beamer hidden}
   }
   \NewTColorBox{alertblock}{ d<> O{} m }{
     alertblock,
-    xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},
+    talk@tcb@if={iftalk@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},
     #2,
     alt=<#1>{}{beamer hidden}
   }
   \NewTColorBox{exampleblock}{ d<> O{} m }{
     exampleblock,
-    xbeamer@tcb@if={ifxbeamer@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},
+    talk@tcb@if={iftalk@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},
     #2,
     alt=<#1>{}{beamer hidden}
   }
@@ -197,9 +197,9 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \ExplSyntaxOn
-\ifxbeamer@tcb@titlepage
+\iftalk@tcb@titlepage
 
-  \DeclareTemplateInterface{titlepage-element}{xbeamer}{1}{
+  \DeclareTemplateInterface{titlepage-element}{talk}{1}{
     after-skip : length = 0em ,
     before-skip : length = 0em ,
     tag-begin : tokenlist = ,
@@ -207,45 +207,45 @@
     instance : tokenlist =
   }
 
-  \DeclareTemplateCode{titlepage-element}{xbeamer}{1}{
-    after-skip  = \l__xbeamer_titlelem_after_skip ,
-    before-skip = \l__xbeamer_titlelem_before_skip ,
-    tag-begin   = \l__xbeamer_titlelem_tag_begin_tl ,
-    tag-end     = \l__xbeamer_titlelem_tag_end_tl ,
-    instance    = \l__xbeamer_titlelem_instance_tl ,
+  \DeclareTemplateCode{titlepage-element}{talk}{1}{
+    after-skip  = \l__talk_titlelem_after_skip ,
+    before-skip = \l__talk_titlelem_before_skip ,
+    tag-begin   = \l__talk_titlelem_tag_begin_tl ,
+    tag-end     = \l__talk_titlelem_tag_end_tl ,
+    instance    = \l__talk_titlelem_instance_tl ,
   }{
     \tl_if_empty:nF {#1}{
-      \vspace{\l__xbeamer_titlelem_before_skip}
+      \vspace{\l__talk_titlelem_before_skip}
       \group_begin:
-        \l__xbeamer_titlelem_tag_begin_tl
-        \begin{tcolorbox}[titlepage-\l__xbeamer_titlelem_instance_tl]
+        \l__talk_titlelem_tag_begin_tl
+        \begin{tcolorbox}[titlepage-\l__talk_titlelem_instance_tl]
           #1
-          \str_if_eq:NNT {\l__xbeamer_titlelem_instance_tl}{title}{
+          \str_if_eq:NNT {\l__talk_titlelem_instance_tl}{title}{
             \tl_if_empty:nF {\@subtitle}{
               \par\medskip\large\@subtitle\par
             }
           }
         \end{tcolorbox}
-        \l__xbeamer_titlelem_tag_end_tl
+        \l__talk_titlelem_tag_end_tl
       \group_end:
-      \vspace{\l__xbeamer_titlelem_after_skip}
+      \vspace{\l__talk_titlelem_after_skip}
     }
   }
 
-  \DeclareInstance{titlepage-element}{author}{xbeamer}{
+  \DeclareInstance{titlepage-element}{author}{talk}{
     instance = author
   }
-  \DeclareInstance{titlepage-element}{date}{xbeamer}{
+  \DeclareInstance{titlepage-element}{date}{talk}{
     instance = date
   }
-  \DeclareInstance{titlepage-element}{institute}{xbeamer}{
+  \DeclareInstance{titlepage-element}{institute}{talk}{
     instance = institute
   }
-  \DeclareInstance{titlepage-element}{title}{xbeamer}{
+  \DeclareInstance{titlepage-element}{title}{talk}{
     instance = title
   }
 
-  \EditTemplateDefaults{titlepage}{xbeamer}{
+  \EditTemplateDefaults{titlepage}{talk}{
     element-order = {title, author, institute, date}
   }
 

@@ -189,17 +189,17 @@ There are some ways to avoid such problems:
 \end{enumerate}
 
 \clearpage
-\section{xbeamer}
+\section{ltx-talk}
 
-There is also an experimental \saminline|xbeamer| version of the tcolorbox inner theme available from its github page\footnote{\url{https://github.com/samcarter/beamertheme-tcolorbox}}.
+There is also an experimental \saminline|ltx-talk| version of the tcolorbox inner theme available from its github page\footnote{\url{https://github.com/samcarter/beamertheme-tcolorbox}}.
 
 Most of the theme options are the same, only the \saminline|inmargin| option does not exist:
 \begin{tcblisting}{
-  title={xbeamer theme},
+  title={ltx-talk theme},
   compilable listing sam
 }
   \DocumentMetadata{tagging=on,lang=en}
-  \documentclass{xbeamer}
+  \documentclass{ltx-talk}
   \usepackage[
     shadow,
     rounded,
@@ -207,7 +207,7 @@ Most of the theme options are the same, only the \saminline|inmargin| option doe
     showtitle,
     titlepage,
     blocks
-  ]{xbeamerthemetcolorbox} 
+  ]{talkthemetcolorbox} 
   \begin{document}
   \begin{frame}
     \begin{block}{Title}
@@ -223,7 +223,7 @@ Most of the theme options are the same, only the \saminline|inmargin| option doe
   \end{document}
 \end{tcblisting}
 
-Internally, the tcolorbox xbeamer theme works a bit differently than the normal beamer theme and thus making customisations is a bit different, too. The xbeamer theme uses a set of tcolorbox styles to store the options used for the different blocks and boxes:
+Internally, the tcolorbox ltx-talk theme works a bit differently than the normal beamer theme and thus making customisations is a bit different, too. The ltx-talk theme uses a set of tcolorbox styles to store the options used for the different blocks and boxes:
 \begin{center}
 \begin{forest}
   baseline,
@@ -258,13 +258,13 @@ Internally, the tcolorbox xbeamer theme works a bit differently than the normal 
 
 These styles can be used to adjust the appearance of the different elements:
 \begin{tcblisting}{
-  title={xbeamer theme},
+  title={ltx-talk theme},
   compilable listing sam
 }
   \DocumentMetadata{tagging=on,lang=en}
-  \documentclass{xbeamer}
+  \documentclass{ltx-talk}
   
-  \usepackage{xbeamerthemetcolorbox}
+  \usepackage{talkthemetcolorbox}
   
   \title{Some Very Interesting Title}
   \subtitle{Subtitle}
