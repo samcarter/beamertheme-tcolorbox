@@ -4,7 +4,7 @@
 
 ### New
 
-- added experimental xbeamer theme
+- added experimental ltx-talk theme
 
 ### Changed
 

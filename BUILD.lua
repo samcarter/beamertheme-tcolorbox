@@ -17,4 +17,4 @@ ctansummary = "A beamer inner theme which reproduces standard beamer blocks usin
 -- https://github.com/samcarter/beamertheme-sam/blob/main/build-settings.lua
 local common_settings, build_settings = pcall(require, "../beamertheme-sam/build-settings.lua")
 
-table.insert(excludefiles, "xbeamerthemetcolorbox.sty")
+-- table.insert(excludefiles, "xbeamerthemetcolorbox.sty")
