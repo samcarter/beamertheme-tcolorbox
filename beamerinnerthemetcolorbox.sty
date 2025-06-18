@@ -278,6 +278,17 @@
     auto outer arc,
     before upper={\strut}
   }
+  
+  \ifbeamer@amssymb
+    \def\beamergotobutton#1{\beamerbutton{$\!\blacktriangleright\,$#1}}
+    \def\beamerskipbutton#1{\beamerbutton{$\!\blacktriangleright\!\blacktriangleright\,$#1}}
+    \def\beamerreturnbutton#1{\beamerbutton{$\!\blacktriangleleft\,$#1}}
+  \else
+    \def\beamergotobutton#1{\beamerbutton{$\!\triangleright\,$#1}}
+    \def\beamerskipbutton#1{\beamerbutton{$\!\triangleright\triangleright\,$#1}}
+    \def\beamerreturnbutton#1{\beamerbutton{$\!\triangleleft\,$#1}}
+  \fi
+  
 \fi
 
 \mode<all>
