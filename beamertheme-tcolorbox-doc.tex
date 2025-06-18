@@ -101,6 +101,7 @@ In addition to automatically adopting settings from other themes, one can also e
 \item[shadow] controls if the block has a shadow (default: \saminline|false|, but set to \saminline|true| if the \saminline|shadow| outer theme is detected)
 \item[showtitle] controls if a small coloured stripe is shown for blocks with empty title (default: \saminline|true|, but set to \saminline|false| if the block has rounded corners)
 \item[titlepage] controls if tcolorboxes should be used for the title page, section page etc. (default: \saminline|true|)
+\item[buttons] controls if beamer buttons should be replaced with tcboxes (default: \saminline|false|)
 \end{description}
 These options can be set to \saminline|true| or \saminline|false| (calling either option without explicit \saminline|true| or \saminline|false| will set it to \saminline|true|).
 
@@ -191,9 +192,8 @@ There are some ways to avoid such problems:
 \clearpage
 \section{ltx-talk}
 
-There is also an experimental \saminline|ltx-talk| version of the tcolorbox inner theme available from its github page\footnote{\url{https://github.com/samcarter/beamertheme-tcolorbox}}.
-
-Most of the theme options are the same, only the \saminline|inmargin| option does not exist:
+There is also an experimental \saminline|ltx-talk| version of the tcolorbox inner theme available.
+Most of the theme options are the same, only the \saminline|inmargin| and \saminline|buttons| options do not exist:
 \begin{tcblisting}{
   title={ltx-talk theme},
   compilable listing sam

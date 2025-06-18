@@ -42,6 +42,7 @@
 \newif\ifbeamer@tcb@center
 \newif\ifbeamer@tcb@titlepage
 \newif\ifbeamer@tcb@blocks
+\newif\ifbeamer@tcb@buttons
 \beamer@tcb@colortrue
 \def\beamer@tcb@true{true}
 
@@ -85,6 +86,7 @@
 \DeclareOptionBeamer{showtitle}[true]{\csname beamer@tcb@showtitle#1\endcsname}
 \DeclareOptionBeamer{titlepage}[true]{\csname beamer@tcb@titlepage#1\endcsname}
 \DeclareOptionBeamer{blocks}[true]{\csname beamer@tcb@blocks#1\endcsname}
+\DeclareOptionBeamer{buttons}[true]{\csname beamer@tcb@buttons#1\endcsname}
 
 \ExecuteOptionsBeamer{shadow=false}
 \ExecuteOptionsBeamer{rounded=false}
@@ -93,6 +95,7 @@
 \ExecuteOptionsBeamer{showtitle=true}
 \ExecuteOptionsBeamer{titlepage=true}
 \ExecuteOptionsBeamer{blocks=true}
+\ExecuteOptionsBeamer{buttons=false}
 
 % check options from other themes
 \ifdefined\beamer@themerounded@shadow
@@ -247,6 +250,34 @@
   \addtobeamertemplate{part page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
   \addtobeamertemplate{section page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
   \addtobeamertemplate{subsection page}{\begingroup\beamer@tcb@patchcolorbox}{\endgroup}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Buttons
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifbeamer@tcb@buttons
+  \RenewTCBox{\beamerbutton}{}{
+    code={%
+      \usebeamercolor{button border}%
+      \usebeamercolor{button}%
+      \usebeamerfont{button}%
+    },
+    size=tight,
+    nobeforeafter,
+    colframe=button border.fg,
+    colback=button.bg,
+    coltext=button.fg,
+    boxrule=0.4ex,
+    left=1.5ex,
+    right=1.5ex,
+    height=3.1ex,
+    bean arc,
+    auto outer arc,
+    before upper={\strut}
+  }
 \fi
 
 \mode<all>

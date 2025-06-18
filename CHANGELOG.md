@@ -4,6 +4,7 @@
 
 ### New
 
+- `buttons` option to replace beamer buttons with tcboxes
 - added experimental ltx-talk theme
 
 ### Changed
