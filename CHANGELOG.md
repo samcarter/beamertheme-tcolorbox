@@ -4,6 +4,15 @@
 
 ### New
 
+### Changed
+
+### Fixed
+
+
+## [v1.1]
+
+### New
+
 - `buttons` option to replace beamer buttons with tcboxes
 - added experimental ltx-talk theme
 
@@ -124,7 +133,8 @@
 
 ------
 
-[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.0...HEAD
+[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.1...HEAD
+[v1.1]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.0...v1.1
 [v1.0]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.9...v1.0
 [v0.9]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.8...v0.9
 [v0.8]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.7...v0.8
