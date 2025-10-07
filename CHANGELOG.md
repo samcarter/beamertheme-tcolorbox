@@ -8,6 +8,15 @@
 
 ### Fixed
 
+
+## [v1.2]
+
+### New
+
+### Changed
+
+### Fixed
+
 - fixed syntax error for empty subtitles in ltx-talk theme
 
 ## [v1.1]
@@ -134,7 +143,8 @@
 
 ------
 
-[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.1...HEAD
+[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.2...HEAD
+[v1.2]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.1...v1.2
 [v1.1]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.0...v1.1
 [v1.0]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.9...v1.0
 [v0.9]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.8...v0.9
