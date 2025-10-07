@@ -220,8 +220,8 @@
         \l__talk_titlelem_tag_begin_tl
         \begin{tcolorbox}[titlepage-\l__talk_titlelem_instance_tl]
           #1
-          \str_if_eq:NNT {\l__talk_titlelem_instance_tl}{title}{
-            \tl_if_empty:nF {\@subtitle}{
+          \str_if_eq:VnT \l__talk_titlelem_instance_tl {title}{
+            \tl_if_empty:NF \@subtitle {
               \par\medskip\large\@subtitle\par
             }
           }
