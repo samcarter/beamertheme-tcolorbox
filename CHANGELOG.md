@@ -8,6 +8,7 @@
 
 ### Fixed
 
+- fixed syntax error for empty subtitles in ltx-talk theme
 
 ## [v1.1]
 
