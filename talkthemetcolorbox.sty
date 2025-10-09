@@ -49,36 +49,26 @@
 % Theme Options
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\RequirePackage{xkeyval}
-\DeclareOptionX{shadow}[true]{
-  \csname talk@tcb@shadow#1\endcsname
+\ExplSyntaxOn
+\keys_define:nn { talk@tcb } {
+  shadow.if=talk@tcb@shadow,
+  shadow.initial:n=false,
+  rounded.code=\csname talk@tcb@rounded#1\endcsname
+               \csname talk@tcb@shaded#1\endcsname
+               \csname talk@tcb@showtitlefalse\endcsname,
+  rounded.default:n=true,
+  rounded.initial:n=false,
+  shaded.if=talk@tcb@shaded,
+  shaded.initial:n=false,
+  showtitle.if=talk@tcb@showtitle,
+  showtitle.initial:n=false,
+  titlepage.if=talk@tcb@titlepage,
+  titlepage.initial:n=true,
+  blocks.if=talk@tcb@blocks,
+  blocks.initial:n=true,
 }
-\DeclareOptionX{rounded}[true]{
-  \csname talk@tcb@rounded#1\endcsname
-  \csname talk@tcb@shaded#1\endcsname
-  \csname talk@tcb@showtitlefalse\endcsname
-}
-\DeclareOptionX{shaded}[true]{
-  \csname talk@tcb@shaded#1\endcsname
-}
-\DeclareOptionX{showtitle}[true]{
-  \csname talk@tcb@showtitle#1\endcsname
-}
-\DeclareOptionX{titlepage}[true]{
-  \csname talk@tcb@titlepage#1\endcsname
-}
-\DeclareOptionX{blocks}[true]{
-  \csname talk@tcb@blocks#1\endcsname
-}
-\ExecuteOptionsX{
-  shadow=false,
-  rounded=false,
-  shaded=false,
-  showtitle=false,
-  titlepage=true,
-  blocks=true
-}
-\ProcessOptionsX
+\ProcessKeyOptions[talk@tcb]
+\ExplSyntaxOff
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
