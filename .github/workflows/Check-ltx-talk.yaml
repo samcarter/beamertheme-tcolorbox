@@ -3,9 +3,9 @@ name: Check with current ltx-talk
 on:
   schedule:
     - cron: '47 13 * * 3'
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 permissions:
   contents: write
