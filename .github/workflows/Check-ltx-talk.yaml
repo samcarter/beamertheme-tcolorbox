@@ -1,0 +1,42 @@
+name: Check with current ltx-talk
+
+on:
+  schedule:
+    - cron: '47 13 * * 3'
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: check
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Checkout ltx-talk
+        uses: actions/checkout@v5
+        with: 
+          repository: josephwright/ltx-talk
+          path: ltx-talk
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v3
+        with:
+           package_file: ./.github/tl_packages
+      - name: Compile test presentation
+        env:
+          TMPDIR: ${{ runner.temp }}      
+        run: |
+          cd ltx-talk
+          l3build install
+          cd $GITHUB_WORKSPACE
+          latexmk --pdf -pdflatex="pdflatex-dev %O %S" ./testing/talktest.tex
+          mkdir art
+          cp talktest.pdf art/
+      - name: Upload build artifats
+        uses: actions/upload-artifact@v4
+        with:
+          path: art

@@ -1,0 +1,136 @@
+\documentclass[
+%20pt
+]{beamer}
+
+\title{Title}
+\author{Author}
+\subtitle{Subtitle}
+\date{Date}
+\institute{Insitute}
+
+\usetheme{Warsaw}
+%\usetheme{Luebeck}
+%\usetheme{Ilmenau}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{CambridgeUS}
+%
+%\usecolortheme{orchid}
+%\useinnertheme{inmargin}
+
+%\setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth]{example-image-duck}}
+
+
+%\setbeamerfont{block title example}{shape=\itshape}
+
+\setbeamercovered{transparent}
+
+\usepackage[most]{tcolorbox}
+
+\useinnertheme[
+%  inmargin=false,
+%  rounded=false,
+%  shadow=true,
+%  shaded=false,
+%  showtitle,
+%titlepage=false,
+%blocks=false
+]{tcolorbox}
+
+%\makeatletter
+%\tcbsetforeverylayer{
+%  detach title, 
+%  overlay={
+%    \node[anchor=north east,align=right,text width=\dimexpr\beamer@leftsidebar-\beamer@leftmargin-\beamer@rightmargin\relax] at ([xshift=-\beamer@leftmargin]frame.north west) {\tcbtitle};
+%  }
+%%    enhanced,
+%%    attach boxed title to top center,
+%}
+%\makeatother
+
+%\setbeamercolor{block body alerted}{fg=orange}
+
+\AtBeginSection{%
+  \begin{frame}[plain]
+    \usebeamertemplate{section page}
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\section{Test}
+
+    
+\begin{frame}[t]
+
+  test
+
+  \begin{block}<2>{xxx}
+  some test
+  \end{block}  
+
+  \begin{alertblock}<2>{My title}
+  some test
+  \begin{enumerate}
+  \item test
+  \end{enumerate}
+  \end{alertblock}  
+  
+  \begin{exampleblock}{My title}
+  some test
+  \end{exampleblock}      
+  
+  \begin{theorem}[Quack]
+  some test
+  \end{theorem}        
+
+\end{frame} 
+
+\begin{frame}
+\begin{columns}[onlytextwidth]
+\begin{column}{.4\textwidth}
+  \begin{block}{}
+  some test
+  \end{block}  
+\end{column}
+\begin{column}{.4\textwidth}
+  \begin{exampleblock}{My title}
+  some test
+  \end{exampleblock}   
+\end{column}
+\end{columns}
+
+\begin{block}{title}
+content...
+%\begin{exampleblock}{title}
+%content...
+
+  \begin{alertblock}{My title}
+  some test
+  \begin{enumerate}
+  \item test
+  \end{enumerate}
+  \end{alertblock} 
+
+%\end{exampleblock}
+content
+\end{block}
+
+\begin{tcolorbox}[
+  title=foo,
+%  code={\pgfkeysalsofrom\tcbthemeoptions}
+]
+fg
+\end{tcolorbox}
+
+\begin{tcolorbox}%[code={\pgfkeysalsofrom\tcbthemeoptions}]
+fg
+\end{tcolorbox}
+
+\end{frame}
+
+\end{document}

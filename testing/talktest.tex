@@ -1,0 +1,35 @@
+% !TeX TS-program = pdflatex-dev -interaction=nonstopmode % | txs:///view-pdf | txs:///view-log
+\DocumentMetadata{}
+\documentclass{ltx-talk}
+
+\usepackage{talkthemetcolorbox}
+
+\title{Some Very Interesting Title}
+\subtitle{Subtitle}
+\author{Author Name}
+\institute{Cool Conference}
+
+%\tcbset{
+%  titlepage/.append style={colback=lightgray,width=10cm},
+%  titlepage-title/.append style={drop lifted shadow},
+%  block/.append style={borderline={1pt}{0pt}{black,dashed}},
+%  alertblock/.append style={colbacktitle=orange},
+%}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}
+  \begin{block}{Title}
+    Body
+  \end{block}
+  \begin{alertblock}{Title}
+    Body
+  \end{alertblock}
+  \begin{exampleblock}{Title}
+    Body
+  \end{exampleblock}
+\end{frame}
+
+\end{document}
