@@ -33,7 +33,7 @@ jobs:
           cd ltx-talk
           l3build install
           cd $GITHUB_WORKSPACE
-          latexmk --pdf -pdflatex="pdflatex-dev %O %S" ./testing/talktest.tex
+          latexmk --pdf ./testing/talktest.tex
           mkdir art
           cp talktest.pdf art/
       - name: Upload build artifats
