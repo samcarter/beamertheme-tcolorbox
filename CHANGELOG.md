@@ -6,6 +6,15 @@
 
 ### Changed
 
+### Fixed
+
+
+## [v1.3]
+
+### New
+
+### Changed
+
 - ltx-talk theme: switched from xkeyval to build-in options
 - ltx-talk theme: removed workaround for tagging warning, seems to have been fixed in tcolorbox v6.9.0
 
@@ -146,7 +155,8 @@
 
 ------
 
-[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.2...HEAD
+[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.3...HEAD
+[v1.3]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.2...v1.3
 [v1.2]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.1...v1.2
 [v1.1]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.0...v1.1
 [v1.0]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v0.9...v1.0
