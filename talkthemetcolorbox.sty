@@ -241,22 +241,3 @@
 
 \fi % if titlepage
 \ExplSyntaxOff
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Avoid tagging warning for tcolorboxes
-% copied from u-fischer https://github.com/latex3/tagging-project/issues/73#issuecomment-2089027746
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\AddToHook{env/tcolorbox/before}{\par\tagstructbegin{tag=Div}}
-\AddToHook{env/tcolorbox/begin}{\tagpdfparaOff\tcbset{before upper=\tagpdfparaOn}}
-\AddToHook{env/tcolorbox/after}{\par\tagstructend}
-\AddToHook{env/block/before}{\par\tagstructbegin{tag=Div}}
-\AddToHook{env/block/begin}{\tagpdfparaOff\tcbset{before upper=\tagpdfparaOn}}
-\AddToHook{env/block/after}{\par\tagstructend}
-\AddToHook{env/alertblock/before}{\par\tagstructbegin{tag=Div}}
-\AddToHook{env/alertblock/begin}{\tagpdfparaOff\tcbset{before upper=\tagpdfparaOn}}
-\AddToHook{env/alertblock/after}{\par\tagstructend}
-\AddToHook{env/exampleblock/before}{\par\tagstructbegin{tag=Div}}
-\AddToHook{env/exampleblock/begin}{\tagpdfparaOff\tcbset{before upper=\tagpdfparaOn}}
-\AddToHook{env/exampleblock/after}{\par\tagstructend}

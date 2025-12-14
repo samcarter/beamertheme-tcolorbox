@@ -6,6 +6,8 @@
 
 ### Changed
 
+- ltx-talk theme: removed workaround for tagging warning, seems to have been fixed in tcolorbox v6.9.0
+
 ### Fixed
 
 
