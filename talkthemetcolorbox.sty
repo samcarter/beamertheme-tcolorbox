@@ -75,17 +75,20 @@
 % General Settings
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ExplSyntaxOn
 \tcbset{
   block/.style={
     enhanced,
-    before title={\strut},
-    before upper={\strut},
+    before~title={\strut},
+    before~upper={\strut},
     left=0.05cm,
     right=0.05cm,
     boxrule=0cm,
-    frame hidden,
+    frame~hidden,
     top=1.5mm,
     bottom=0.5mm,
+    opacityfill=\tl_use:N \l__opacity_backend_fill_tl,
+    opacitytext=\tl_use:N \l__opacity_backend_stroke_tl,
     talk@tcb@iffirstlayer={oversize=0mm}{},
     colbacktitle=structure!75!black,
     coltitle=white,
@@ -96,15 +99,15 @@
       toptitle=0.2mm,
       bottom=0mm
     }{
-      sharpish corners
+      sharpish~corners
     },
     talk@tcb@if={iftalk@tcb@shaded}{
-      title code app={
-          \shade[top color=tcbcolbacktitle,bottom color=tcbcolback,opacity=\kvtcb@opacitybacktitle] (title.south west) rectangle ([yshift=-0.5mm]title.south east);
+      title~code~app={
+          \shade[top~color=tcbcolbacktitle,bottom~color=tcbcolback,opacity=\kvtcb@opacitybacktitle] (title.south~west) rectangle ([yshift=-0.5mm]title.south~east);
         }
     }{},
     talk@tcb@if={iftalk@tcb@shadow}{
-      drop fuzzy shadow=black!90
+      drop~fuzzy~shadow=black!90
     }{}
   },
   alertblock/.style={
@@ -120,12 +123,12 @@
   titlepage/.style={
     halign=center,
     enhanced,
-    frame hidden,
+    frame~hidden,
     colback=white,
     talk@tcb@if={iftalk@tcb@rounded}{
       arc=1.3mm,
     }{
-      sharpish corners
+      sharpish~corners
     }
   },
   titlepage-title/.style={
@@ -135,7 +138,7 @@
     colupper=white,
     boxsep=4mm,
     talk@tcb@if={iftalk@tcb@shadow}{
-      drop fuzzy shadow=black!90
+      drop~fuzzy~shadow=black!90
     }{}
   },
   titlepage-author/.style={
@@ -148,12 +151,13 @@
   titlepage-date/.style={
     titlepage
   },
-  beamer hidden/.style={
+  beamer~hidden/.style={
     opacityfill=0,
     invisible,
-    no shadow
+    no~shadow
   }
 }
+\ExplSyntaxOff
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %

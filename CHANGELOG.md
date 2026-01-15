@@ -8,6 +8,8 @@
 
 ### Fixed
 
+- ltx-talk theme: consider the current opacity, e.g. when uncovering
+
 
 ## [v1.3]
 
