@@ -179,7 +179,9 @@ To make other tcoloboxes look like beamer blocks, one can access the collected o
 \end{document}
 \end{tcblisting}
 
-\section{Using with \texttt{\textbackslash pause}}
+\section{Caveats}
+
+\subsection{Using with \texttt{\textbackslash pause}}
 
 Using the \saminline|\pause| macro in pgf-based environments like a \saminline|tikzpicture| or a \saminline|tcolorbox| is known to cause problems like disappearing footlines.
 There are some ways to avoid such problems:
@@ -188,6 +190,10 @@ There are some ways to avoid such problems:
 \item The best solution to problems with \saminline|\pause| is to not use \saminline|\pause|. Instead one can use overlays like \saminline|\only<...>{...}|, \saminline|\visible<...>{...}|, \saminline|\uncover<...>{...}| etc.
 \item Alternatively, one could switch to another covered style for the presentation, e.g. by adding \saminline|\setbeamercovered{transparent=0}| to the preamble.
 \end{enumerate}
+
+\subsection{Theorem title font}
+
+Normally, theorem titles are upright in beamer. To get the same result with the \saminline|tcolorbox| inner theme, use \saminline|\setbeamerfont{block title}{shape=\upshape}|.
 
 \clearpage
 \section{ltx-talk}

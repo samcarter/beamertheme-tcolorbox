@@ -13,6 +13,8 @@
 
 ### New
 
+- doc: added example how to change font for upright theorem titles (see #6)
+
 ### Changed
 
 - adjust spacing title page (see #7)
