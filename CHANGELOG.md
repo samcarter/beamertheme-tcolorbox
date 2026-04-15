@@ -15,6 +15,8 @@
 
 ### Changed
 
+- adjust spacing title page (see #7)
+
 ### Fixed
 
 - ltx-talk theme: consider the current opacity, e.g. when uncovering
