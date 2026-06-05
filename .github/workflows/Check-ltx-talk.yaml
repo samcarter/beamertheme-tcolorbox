@@ -23,9 +23,10 @@ jobs:
           repository: josephwright/ltx-talk
           path: ltx-talk
       - name: Install TeX Live
-        uses: zauguin/install-texlive@v3
+        uses: zauguin/install-texlive@v4
         with:
            package_file: ./.github/tl_packages
+           texlive_version: 2026
       - name: Compile test presentation
         env:
           TMPDIR: ${{ runner.temp }}      
