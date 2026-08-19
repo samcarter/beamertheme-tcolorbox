@@ -24,7 +24,6 @@ intcalc
 kvdefinekeys
 kvoptions
 kvsetkeys
-l3backend
 latex
 latex-lab
 latexconfig
