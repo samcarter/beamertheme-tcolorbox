@@ -8,6 +8,8 @@
 
 ### Fixed
 
+- ltx-talk theme: fixed opacity of title text for overlays
+
 
 ## [v1.4]
 
