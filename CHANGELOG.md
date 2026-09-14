@@ -6,6 +6,8 @@
 
 ### Changed
 
+- adjust to new opacity grouping for tcolorbox/ltx-talk (needs ltx-talk v0.6.4)
+
 ### Fixed
 
 - ltx-talk theme: fixed opacity of title text for overlays

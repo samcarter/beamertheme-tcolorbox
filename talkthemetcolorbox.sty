@@ -87,9 +87,6 @@
     frame~hidden,
     top=1.5mm,
     bottom=0.5mm,
-    opacityfill=\tl_use:N \l__opacity_backend_fill_tl,
-    opacitytext=\tl_use:N \l__opacity_backend_stroke_tl,
-    opacitytitle=\tl_use:N \l__opacity_backend_stroke_tl,
     talk@tcb@iffirstlayer={oversize=0mm}{},
     colbacktitle=structure!75!black,
     coltitle=white,
@@ -104,7 +101,7 @@
     },
     talk@tcb@if={iftalk@tcb@shaded}{
       title~code~app={
-          \shade[top~color=tcbcolbacktitle,bottom~color=tcbcolback,opacity=\kvtcb@opacitybacktitle] (title.south~west) rectangle ([yshift=-0.5mm]title.south~east);
+          \shade[top~color=tcbcolbacktitle,bottom~color=tcbcolback] (title.south~west) rectangle ([yshift=-0.5mm]title.south~east);
         }
     }{},
     talk@tcb@if={iftalk@tcb@shadow}{
