@@ -12,7 +12,7 @@
 % See https://www.latex-project.org/lppl.txt
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ProvidesPackage{talkthemetcolorbox}[2026/01/16 version v1.4 Beamer blocks with tcolorboxes]
+\ProvidesPackage{talkthemetcolorbox}[2026/09/15 version v1.5 Beamer blocks with tcolorboxes]
 
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins,hooks}
@@ -196,7 +196,9 @@
     before-skip : length = 0em ,
     tag-begin : tokenlist = ,
     tag-end : tokenlist = ,
-    instance : tokenlist =
+    instance : tokenlist = ,
+    color : tokenlist = . ,
+    font : tokenlist = \normalfont ,
   }
 
   \DeclareTemplateCode{titlepage-element}{talk}{1}{
@@ -205,6 +207,8 @@
     tag-begin   = \l__talk_titlelem_tag_begin_tl ,
     tag-end     = \l__talk_titlelem_tag_end_tl ,
     instance    = \l__talk_titlelem_instance_tl ,
+    color       = \l__talk_titlelem_color_tl ,
+    font        = \l__talk_titlelem_font_tl ,    
   }{
     \tl_if_empty:nF {#1}{
       \vspace{\l__talk_titlelem_before_skip}
