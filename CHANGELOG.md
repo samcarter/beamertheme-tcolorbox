@@ -6,6 +6,15 @@
 
 ### Changed
 
+### Fixed
+
+
+## [v1.6]
+
+### New
+
+### Changed
+
 - reinstate workaround for block opacity for ltx-talk v0.6.5
 
 ### Fixed
@@ -183,7 +192,8 @@
 
 ------
 
-[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.5...HEAD
+[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.6...HEAD
+[v1.6]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.5...v1.6
 [v1.5]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.4...v1.5
 [v1.4]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.3...v1.4
 [v1.3]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.2...v1.3
