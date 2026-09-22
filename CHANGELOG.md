@@ -6,6 +6,8 @@
 
 ### Changed
 
+- reinstate workaround for block opacity for ltx-talk v0.6.5
+
 ### Fixed
 
 
