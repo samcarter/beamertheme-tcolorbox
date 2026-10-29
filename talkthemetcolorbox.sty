@@ -29,7 +29,14 @@
       \expandafter\@secondoftwo
     \fi
     \@secondoftwo{\pgfkeysalso{#1}}{\pgfkeysalso{#2}}%
-  }
+  },
+  talk@tcb@iftransparent/.code 2 args = {%
+    \pgfmathparse{int(equal(\kvtcb@opacityback,1))}%
+    \ifnum\pgfmathresult=1
+      \expandafter\@secondoftwo
+    \fi
+    \@secondoftwo{\pgfkeysalso{#1}}{\pgfkeysalso{#2}}%
+  },
 }
 
 \newif\iftalk@tcb@rounded
@@ -103,12 +110,16 @@
       sharpish~corners
     },
     talk@tcb@if={iftalk@tcb@shaded}{
-      title~code~app={
-          \shade[top~color=tcbcolbacktitle,bottom~color=tcbcolback] (title.south~west) rectangle ([yshift=-0.5mm]title.south~east);
+      % workaround for https://github.com/T-F-S/tcolorbox/issues/370
+      talk@tcb@iftransparent={
+        title~code~app={
+            \shade[top~color=tcbcolbacktitle,bottom~color=tcbcolback] (title.south~west) rectangle ([yshift=-0.5mm]title.south~east);
         }
+      }{}
     }{},
     talk@tcb@if={iftalk@tcb@shadow}{
-      drop~fuzzy~shadow=black!90
+      % workaround for https://github.com/T-F-S/tcolorbox/issues/370
+      talk@tcb@iftransparent={drop~fuzzy~shadow={black!90}}{},
     }{}
   },
   alertblock/.style={

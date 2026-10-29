@@ -6,6 +6,8 @@
 
 ### Changed
 
+- removed shadows and shdings for semi-transparent blocks to avoid probelms with opacity
+
 ### Fixed
 
 
