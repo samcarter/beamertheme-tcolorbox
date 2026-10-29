@@ -11,7 +11,7 @@
 module = "beamertheme-tcolorbox"
 ctanpkg = "beamertheme-tcolorbox"
 ctanprefix = "/macros/latex/contrib/beamer-contrib/themes/"
-ctansummary = "This package provides an inner theme for beamer or ltx-talk which reproduces standard beamer blocks using tcolorboxes. The look and feel (rounded/sharp corners, shadows and colours) will automatically adapt to which other themes are loaded."
+ctansummary = "A beamer/ltx-talk inner theme which reproduces standard beamer blocks using tcolorboxes"
 
 -- common settings =============================================================
 -- https://github.com/samcarter/beamertheme-sam/blob/main/build-settings.lua
