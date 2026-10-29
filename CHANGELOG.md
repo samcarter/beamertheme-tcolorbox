@@ -15,7 +15,7 @@
 
 ### Changed
 
-- removed shadows and shdings for semi-transparent blocks to avoid probelms with opacity
+- removed shadows and shadings for semi-transparent blocks to avoid probelms with opacity
 
 ### Fixed
 
