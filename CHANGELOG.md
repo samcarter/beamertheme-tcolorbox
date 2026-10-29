@@ -15,15 +15,6 @@
 
 ### Changed
 
-### Fixed
-
-
-## [v1.7]
-
-### New
-
-### Changed
-
 - removed shadows and shadings for semi-transparent blocks to avoid problems with opacity
 
 ### Fixed
