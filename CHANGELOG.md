@@ -6,6 +6,15 @@
 
 ### Changed
 
+### Fixed
+
+
+## [v1.7]
+
+### New
+
+### Changed
+
 - removed shadows and shdings for semi-transparent blocks to avoid probelms with opacity
 
 ### Fixed
@@ -194,7 +203,8 @@
 
 ------
 
-[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.6...HEAD
+[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.7...HEAD
+[v1.7]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.6...v1.7
 [v1.6]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.5...v1.6
 [v1.5]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.4...v1.5
 [v1.4]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.3...v1.4
