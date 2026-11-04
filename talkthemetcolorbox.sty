@@ -171,31 +171,29 @@
 % Defining blocks
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ExplSyntaxOn
 \iftalk@tcb@blocks
   \RenewDocumentEnvironment{block}{d<> O{} m}{
-    \__talk_action_begin:n {#1}
+    \begin{actionenv}<#1>
     \begin{tcolorbox}[block,talk@tcb@if={iftalk@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},#2]
   }{
     \end{tcolorbox}
-    \__talk_action_end:
+    \end{actionenv}
   }
   \NewDocumentEnvironment{alertblock}{d<> O{} m}{
-    \__talk_action_begin:n {#1}
+    \begin{actionenv}<#1>
     \begin{tcolorbox}[alertblock,talk@tcb@if={iftalk@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},#2]
   }{
     \end{tcolorbox}
-    \__talk_action_end:
+    \end{actionenv}
   }  
   \NewDocumentEnvironment{exampleblock}{d<> O{} m}{
-    \__talk_action_begin:n {#1}
+    \begin{actionenv}<#1>
     \begin{tcolorbox}[exampleblock,talk@tcb@if={iftalk@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},#2]
   }{
     \end{tcolorbox}
-    \__talk_action_end:
+    \end{actionenv}
   } 
 \fi % if blocks
-\ExplSyntaxOff
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
