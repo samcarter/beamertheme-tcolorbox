@@ -6,6 +6,15 @@
 
 ### Changed
 
+### Fixed
+
+
+## [v1.8]
+
+### New
+
+### Changed
+
 - improved support for uncovering
 
 ### Fixed
@@ -205,7 +214,8 @@
 
 ------
 
-[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.7...HEAD
+[Unreleased]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.8...HEAD
+[v1.8]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.7...v1.8
 [v1.7]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.6...v1.7
 [v1.7]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.6...v1.7
 [v1.6]: https://github.com/samcarter/beamertheme-tcolorbox/compare/v1.5...v1.6
