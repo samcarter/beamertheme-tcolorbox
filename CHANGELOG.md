@@ -6,6 +6,8 @@
 
 ### Changed
 
+- improved support for uncovering
+
 ### Fixed
 
 

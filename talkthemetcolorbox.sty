@@ -1,8 +1,8 @@
 % !TeX root = ./testing/talktest.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% The tcolorbox inner theme
-% A beamer inner theme which reproduces standard beamer blocks using tcolorboxes
+% The tcolorbox talk theme
+% A theme for ltx-talk which reproduces standard beamer blocks using tcolorboxes
 % Maintained by samcarter
 %
 % Project repository and bug tracker:
@@ -163,11 +163,6 @@
   titlepage-date/.style={
     titlepage
   },
-  beamer~hidden/.style={
-    opacityfill=0,
-    invisible,
-    no~shadow
-  }
 }
 \ExplSyntaxOff
 
@@ -176,26 +171,31 @@
 % Defining blocks
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ExplSyntaxOn
 \iftalk@tcb@blocks
-  \RenewTColorBox{block}{ d<> O{} m }{
-    block,
-    talk@tcb@if={iftalk@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},
-    #2,
-    alt=<#1>{}{beamer hidden}
+  \RenewDocumentEnvironment{block}{d<> O{} m}{
+    \__talk_action_begin:n {#1}
+    \begin{tcolorbox}[block,talk@tcb@if={iftalk@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},#2]
+  }{
+    \end{tcolorbox}
+    \__talk_action_end:
   }
-  \NewTColorBox{alertblock}{ d<> O{} m }{
-    alertblock,
-    talk@tcb@if={iftalk@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},
-    #2,
-    alt=<#1>{}{beamer hidden}
-  }
-  \NewTColorBox{exampleblock}{ d<> O{} m }{
-    exampleblock,
-    talk@tcb@if={iftalk@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},
-    #2,
-    alt=<#1>{}{beamer hidden}
-  }
+  \NewDocumentEnvironment{alertblock}{d<> O{} m}{
+    \__talk_action_begin:n {#1}
+    \begin{tcolorbox}[alertblock,talk@tcb@if={iftalk@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},#2]
+  }{
+    \end{tcolorbox}
+    \__talk_action_end:
+  }  
+  \NewDocumentEnvironment{exampleblock}{d<> O{} m}{
+    \__talk_action_begin:n {#1}
+    \begin{tcolorbox}[exampleblock,talk@tcb@if={iftalk@tcb@showtitle}{title={\mbox{}#3}}{title={#3}},#2]
+  }{
+    \end{tcolorbox}
+    \__talk_action_end:
+  } 
 \fi % if blocks
+\ExplSyntaxOff
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
